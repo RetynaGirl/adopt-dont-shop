@@ -1,5 +1,5 @@
 <html lang="en">
-<%= stylesheet_link_tag 'shelter.css' %>
+  <%= stylesheet_link_tag 'shelter.css' %>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +17,10 @@
     </header>
 
     <section>
-      <h2>Shelters:</h2>
-      <a href="/shelters/new" id="new-shelter-link">Add Shelter</a>
-
+      <div class="section-head">
+        <h2>Shelters:</h2>
+        <a href="/shelters/new" id="new-shelter-link">Add Shelter</a>
+      </div>
       <% @shelters.each do |shelter| %>
         <a href="/shelters/<%= shelter.id %>">
           <%= shelter.name %>
