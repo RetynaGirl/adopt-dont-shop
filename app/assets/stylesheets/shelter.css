@@ -3,12 +3,22 @@ a {
 }
 
 h2 {
-  padding-bottom: 15px;
-  padding-top: 15px;
+
+}
+
+section {
+  margin: 10px;
+  padding: 5px;
 }
 
 #new-shelter-link {
   background-color: #0f69d1;
+  padding: 4px;
+  border: black solid 2px;
+  height: 40%;
+  margin: 1.25em;
 }
 
-section {}
+body {
+  background-color: darkgray;
+}
