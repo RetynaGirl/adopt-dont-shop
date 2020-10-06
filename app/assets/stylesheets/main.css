@@ -10,11 +10,42 @@ header {
 #page-title {
   margin: 0px;
   padding: 15px;
-  border: 0px solid black ;
+  border: 0px solid black;
   border-bottom-width: 4px;
   color: #00ffee;
+
 }
 
 nav {
   float: left;
+  margin: 0px;
+  background-color: indianred;
+  color: #0f69d1;
+  padding: 10px;
+  font-size: 20px;
+  width: 100%;
+}
+
+.nav-link {
+  padding: 10px 20px;
+}
+
+a:link {
+  color: #00ffee;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #00ffee;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00ffee;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #00ffee;
+  text-decoration: underline;
 }
