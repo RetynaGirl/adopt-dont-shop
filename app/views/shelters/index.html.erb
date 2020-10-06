@@ -1,0 +1,31 @@
+<html lang="en">
+<link rel="stylesheet" href="/../../assets/sub_stylesheets/shelter.csss">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt-Don't-Shop</title>
+  </head>
+  <body>
+    <header>
+      <div id="title-bar">
+        <a href="/" id="page-title">Adopt, Don't Shop!</a>
+      </div>
+      <nav>
+        <a href="/shelters" class="nav-link">Shelters</a>
+        <a href="/animals" class="nav-link">Animals</a>
+      </nav>
+    </header>
+
+    <section>
+      <h2>Shelters:</h2>
+      <hr>
+
+      <% @shelters.each do |shelter| %>
+        <a href="/shelters/<%= shelter.id %>">
+          <%= shelter.name %>
+        </a>
+      <% end %>
+    </section>
+
+  </body>
+</html>
