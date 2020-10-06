@@ -3,7 +3,11 @@ body {
   margin: 0px;
 }
 
-
+.section-head {
+  float: left;
+  width: 50%;
+  display: inline-flex;
+}
 
 #title-bar {
   background-color: #0f69d1;
