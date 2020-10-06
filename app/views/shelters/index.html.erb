@@ -1,5 +1,5 @@
 <html lang="en">
-<link rel="stylesheet" href="/../../assets/sub_stylesheets/shelter.csss">
+<%= stylesheet_link_tag 'shelter.css' %>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
 
     <section>
       <h2>Shelters:</h2>
-      <hr>
+      <a href="/shelters/new" id="new-shelter-link">Add Shelter</a>
 
       <% @shelters.each do |shelter| %>
         <a href="/shelters/<%= shelter.id %>">
