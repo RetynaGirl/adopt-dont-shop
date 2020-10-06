@@ -3,17 +3,20 @@ body {
   margin: 0px;
 }
 
-header {
+
+
+#title-bar {
   background-color: #0f69d1;
+  padding: 15px;
+  border: 0px solid black;
+  border-bottom-width: 4px;
 }
 
 #page-title {
   margin: 0px;
   padding: 15px;
-  border: 0px solid black;
-  border-bottom-width: 4px;
   color: #00ffee;
-
+  font-size: 40px;
 }
 
 nav {
@@ -48,4 +51,8 @@ a:hover {
 a:active {
   color: #00ffee;
   text-decoration: underline;
+}
+
+p {
+  color: pink;
 }
