@@ -9,3 +9,11 @@ a {
   height: 40%;
   margin-left: 20px;
 }
+
+.shelter-link {
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px;
+  display: inline-block;
+  background-color: indianred;
+}
