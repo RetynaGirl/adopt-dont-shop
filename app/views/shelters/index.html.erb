@@ -22,8 +22,8 @@
         <a href="/shelters/new" id="new-shelter-link">Add Shelter</a>
       </div>
       <% @shelters.each do |shelter| %>
-        <a href="/shelters/<%= shelter.id %>">
-          <%= shelter.name %>
+        <a href="/shelters/<%= shelter.id %>" class="shelter-link">
+          <%= shelter.name.capitalize %>
         </a>
       <% end %>
     </section>
