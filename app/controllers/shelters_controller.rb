@@ -6,12 +6,13 @@ class SheltersController < ApplicationController
   def new; end
 
   def create
-    shelter = Shelter.create({
+    Shelter.create({
                                name: params[:shelter][:name],
                                address: params[:shelter][:address],
                                city: params[:shelter][:city],
                                state: params[:shelter][:city],
                                zip: params[:shelter][:zip]
                              })
+      redirect_to '/shelters'
   end
 end
