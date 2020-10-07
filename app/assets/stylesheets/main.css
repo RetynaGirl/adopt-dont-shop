@@ -9,6 +9,16 @@ body {
   width: 100%;
 }
 
+section {
+  margin: 10px;
+  padding: 5px;
+  display: block;
+}
+
+h2 {
+  margin: 0px;
+}
+
 #title-bar {
   background-color: #0f69d1;
   padding: 15px;

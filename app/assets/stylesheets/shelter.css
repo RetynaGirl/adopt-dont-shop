@@ -2,16 +2,6 @@ a {
   font-size: 15px;
 }
 
-h2 {
-  margin: 0px;
-}
-
-section {
-  margin: 10px;
-  padding: 5px;
-  display: block;
-}
-
 #new-shelter-link {
   background-color: #0f69d1;
   padding: 4px;
