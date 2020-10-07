@@ -1,0 +1,24 @@
+h3 {
+  margin: 5px;
+  height: 1.25em;
+}
+
+input {
+  margin: 5px;
+  height: 1.25em;
+  display: block;
+}
+
+.form-block {
+  display: inline-flex;
+}
+
+.section-head {
+  margin-bottom: 10px;
+}
+
+#submit {
+  appearance: none;
+  border: none;
+  background-color: darkgray;
+}
