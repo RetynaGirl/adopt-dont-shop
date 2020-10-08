@@ -18,7 +18,13 @@ input {
 }
 
 #submit {
+  display: block;
   appearance: none;
   border: none;
-  background-color: darkgray;
+  padding: 5px;
+  padding-top: 7px;
+  background-color: indianred;
+  font-size: 20px;
+  color: #00ffee;
+  height: fit-content;
 }
