@@ -6,7 +6,7 @@
     <title>Adopt-Don't-Shop</title>
   </head>
   <body>
-    <header>
+    <%# <header>
       <div id="title-bar">
         <a href="/" id="page-title">Adopt, Don't Shop!</a>
       </div>
@@ -14,18 +14,20 @@
         <a href="/shelters" class="nav-link">Shelters</a>
         <a href="/animals" class="nav-link">Animals</a>
       </nav>
-    </header>
+    </header> %>
 
     <section>
       <div class="section-head">
         <h2>Shelters:</h2>
         <a href="/shelters/new" id="new-shelter-link">Add Shelter</a>
       </div>
-      <% @shelters.each do |shelter| %>
-        <a href="/shelters/<%= shelter.id %>">
-          <%= shelter.name %>
-        </a>
-      <% end %>
+      <div>
+        <% @shelters.each do |shelter| %>
+          <a href="/shelters/<%= shelter.id %>" class="shelter-link">
+            <%= shelter.name.split.map(&:capitalize).join(' ') %>
+          </a>
+        <% end %>
+      </div>
     </section>
 
   </body>
