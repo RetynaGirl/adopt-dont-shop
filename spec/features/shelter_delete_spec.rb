@@ -21,7 +21,25 @@ describe 'As a visitor' do
 
       visit "/shelters/#{shelter.id}"
 
-      expect(page).to have_link('Delete Shelter')
+      expect(page).to have_button('Delete Shelter')
+    end
+  end
+
+  describe 'When I click the link "Delete Shelter"' do
+    it 'the shelter is deleted and I get sent to the shelter index page without the shelter' do
+      shelter = Shelter.create(name: 'Bobby',
+                               address: '123 halmock st',
+                               city: 'dover',
+                               state: 'florida',
+                               zip: '12345')
+
+      visit "/shelters/#{shelter.id}"
+
+      click_on('Delete Shelter')
+
+      expect(page).to have_link('New Shelter')
+
+      expect(page).to have_no_link('Bobby')
     end
   end
 end
