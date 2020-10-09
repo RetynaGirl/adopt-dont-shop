@@ -12,27 +12,28 @@
     </p>
 
     <form action="/shelters/<%= @shelter.id %>" method="post">
-        <input type="hidden" name="authenticity_token" value='<%= form_authenticity_token %>'>
-        <div class='form-block'>
-          <div class='form-column'>
-            <h3>Name:</h3>
-            <h3>Address:</h3>
-            <h3>City:</h3>
-            <h3>State:</h3>
-            <h3>Zipcode:</h3>
-          </div>
-
-          <div class='form-column'>
-            <input type="text" name="shelter[name]" value="<%= @shelter.name %>">
-            <input type="text" name="shelter[address]" value="<%= @shelter.address %>">
-            <input type="text" name="shelter[city]" value="<%= @shelter.city %>">
-            <input type="text" name="shelter[state]" value="<%= @shelter.state %>">
-            <input type="text" name="shelter[zip]" value="<%= @shelter.zip %>">
-          </div>
-
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="PATCH">
+      <div class='form-block'>
+        <div class='form-column'>
+          <h3>Name:</h3>
+          <h3>Address:</h3>
+          <h3>City:</h3>
+          <h3>State:</h3>
+          <h3>Zipcode:</h3>
         </div>
-        <input type="submit" id='submit' value='Update Shelter'>
 
-      </form>
+        <div class='form-column'>
+          <input type="text" name="shelter[name]" value="<%= @shelter.name %>">
+          <input type="text" name="shelter[address]" value="<%= @shelter.address %>">
+          <input type="text" name="shelter[city]" value="<%= @shelter.city %>">
+          <input type="text" name="shelter[state]" value="<%= @shelter.state %>">
+          <input type="text" name="shelter[zip]" value="<%= @shelter.zip %>">
+        </div>
+
+      </div>
+      <input type="submit" id='submit' value='Update Shelter'>
+
+    </form>
   </div>
 </section>
