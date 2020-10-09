@@ -44,7 +44,7 @@ describe 'As a visitor' do
       fill_in('shelter[state]', with: 'CO')
       fill_in('shelter[zip]', with: '80304')
 
-      click_button 'Create Shelter'
+      click_on 'Create Shelter'
 
       expect(page).to have_link('Test Shelter')
     end
