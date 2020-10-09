@@ -20,7 +20,7 @@ describe 'As a visitor' do
                                state: 'florida',
                                zip: '12345')
 
-      visit '/shelters/${shelter.id}'
+      visit "/shelters/#{shelter.id}"
 
       expect(page).to have_content(shelter.name)
       expect(page).to have_content(shelter.address)
