@@ -61,7 +61,7 @@ describe 'As a visitor' do
 
       click_on('Update Shelter')
 
-      expect(page).to have_button('Update Shelter')
+      expect(page).to have_link('Update Shelter')
 
       expect(page).to have_content('Joe')
       expect(page).to have_content('new address')
