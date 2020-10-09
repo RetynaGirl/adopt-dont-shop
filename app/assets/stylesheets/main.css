@@ -67,3 +67,7 @@ a:active {
   color: #00ffee;
   text-decoration: underline;
 }
+
+.shelter-info {
+  font-size: 20px;
+}
