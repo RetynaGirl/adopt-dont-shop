@@ -1,6 +1,7 @@
 <section>
   <div class='section-head'>
     <h2><%= @shelter.name.split.map(&:capitalize).join(' ') %></h2>
+    <a href="/shelters/<%= @shelter.id %>/edit" class='header-link'>Update Shelter</a>
   </div>
 
   <div>
