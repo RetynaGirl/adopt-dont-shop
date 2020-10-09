@@ -14,3 +14,10 @@
   display: inline-block;
   background-color: indianred;
 }
+
+#delete-submit {
+  color: #00ffee;
+  height: 29px;
+  font-size: 15px;
+  margin: 0px 0px 0px 20px;
+}
