@@ -1,14 +1,13 @@
-
-    <section>
-      <div class="section-head">
-        <h2>Shelters:</h2>
-        <a href="/shelters/new" id="new-shelter-link">Add Shelter</a>
-      </div>
-      <div>
-        <% @shelters.each do |shelter| %>
-          <a href="/shelters/<%= shelter.id %>" class="shelter-link">
-            <%= shelter.name.split.map(&:capitalize).join(' ') %>
-          </a>
-        <% end %>
-      </div>
-    </section>
+<section>
+  <div class="section-head">
+    <h2>Shelters:</h2>
+    <a href="/shelters/new" class="header-link">Add Shelter</a>
+  </div>
+  <div>
+    <% @shelters.each do |shelter| %>
+      <a href="/shelters/<%= shelter.id %>" class="shelter-link">
+        <%= shelter.name.split.map(&:capitalize).join(' ') %>
+      </a>
+    <% end %>
+  </div>
+</section>
