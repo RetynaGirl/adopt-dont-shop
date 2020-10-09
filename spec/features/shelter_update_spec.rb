@@ -27,7 +27,7 @@ describe 'As a visitor' do
                                state: 'florida',
                                zip: '12345')
 
-      visit "/shelter/#{shelter.id}"
+      visit "/shelters/#{shelter.id}"
 
       expect(page).to have_link('Update Shelter')
     end
@@ -39,7 +39,7 @@ describe 'As a visitor' do
                                state: 'florida',
                                zip: '12345')
 
-      visit "/shelter/#{shelter.id}/edit"
+      visit "/shelters/#{shelter.id}/edit"
 
       expect(page).to have_button('Update Shelter')
     end
@@ -51,7 +51,7 @@ describe 'As a visitor' do
                                state: 'florida',
                                zip: '12345')
 
-      visit "/shelter/#{shelter.id}/edit"
+      visit "/shelters/#{shelter.id}/edit"
 
       fill_in('shelter[name]', with: 'Joe')
       fill_in('shelter[address]', with: 'new address')
