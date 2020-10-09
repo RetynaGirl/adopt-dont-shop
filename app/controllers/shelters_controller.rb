@@ -4,7 +4,7 @@ class SheltersController < ApplicationController
   end
 
   def show
-    @shelter = Shelter.find(:id)
+    @shelter = Shelter.find(params[:id])
   end
 
   def new; end
@@ -14,7 +14,7 @@ class SheltersController < ApplicationController
                                name: params[:shelter][:name],
                                address: params[:shelter][:address],
                                city: params[:shelter][:city],
-                               state: params[:shelter][:city],
+                               state: params[:shelter][:state],
                                zip: params[:shelter][:zip]
                              })
       redirect_to '/shelters'
