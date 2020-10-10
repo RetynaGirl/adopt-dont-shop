@@ -1,0 +1,22 @@
+<section>
+  <div class='section-head'>
+    <h2><%= @pet.name.split.map(&:capitalize).join(' ') %></h2>
+    <a href="/pets/<%= @pet.id %>/edit" class='header-link'>Update Pet</a>
+
+    <form action="/pets/<%= @pet.id %>" method='post'>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete pet" class='header-link' id='delete-submit'>
+    </form>
+  </div>
+  <img src="<%= @pet.image %>" alt="Photo of <%= @pet.name.split.map(&:capitalize).join(' ') %>">
+  <div>
+    <p class='pet-info'>
+      <%= @pet.description.capitalize %> <br>
+      Age: <%= @pet.age %> <br>
+      Sex: <%= @pet.sex %> <br>
+      Can you adopt <%= @pet.name.split.map(&:capitalize).join(' ') %>? <%= @adoptability %> <br>
+      <a href="/shelters/<%= @shelter.id %>"><%= @shelter.name %></a>
+    </p>
+  </div>
+</section>
