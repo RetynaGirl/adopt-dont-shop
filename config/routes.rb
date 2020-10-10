@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'home#home'
 
-  # Shelters REST
+  # Shelters CRUD
   get '/shelters', to: 'shelters#index'
   get '/shelters/new', to: 'shelters#new'
   post '/shelters', to: 'shelters#create'
@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   delete '/shelters/:id', to: 'shelters#delete'
 
   get '/shelters/:id/pets', to: 'shelters#pets'
+  get '/shelters/:id/pets/new', to: 'shelters#new_pet'
 
-  # Pets REST
+  # Pets CRUD
   get '/pets', to: 'pets#index'
   get '/pets/:id', to: 'pets#show'
+  post '/pets', to: 'pets#new'
 end

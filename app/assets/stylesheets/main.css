@@ -100,3 +100,7 @@ a:active {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
 }
+
+#sex {
+  margin: 3px 5px;
+}
