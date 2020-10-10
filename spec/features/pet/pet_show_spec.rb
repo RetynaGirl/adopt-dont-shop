@@ -15,6 +15,12 @@ require 'rails_helper'
 describe 'As a visitor' do
   describe 'When I visit "/pets/:id"' do
     it 'I see the pet with that id and information' do
+      shelter = Shelter.create(name: 'Bobby',
+                               address: '123 halmock st',
+                               city: 'dover',
+                               state: 'florida',
+                               zip: '12345')
+
       pet1 = Pet.create({
                           name: 'Charles',
                           image: 'https://images.dog.ceo/breeds/terrier-norwich/n02094258_230.jpg',
