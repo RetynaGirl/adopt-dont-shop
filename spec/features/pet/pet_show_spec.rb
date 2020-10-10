@@ -38,7 +38,7 @@ describe 'As a visitor' do
       expect(page).to have_content(pet1.age)
       expect(page).to have_content(pet1.sex)
       expect(page).to have_xpath("//img[@src='#{pet1.image}']")
-      expect(page).to have_link(Shelter.find(pet.shelter_id).name.split.map(&:capitalize).join(' '))
+      expect(page).to have_link(Shelter.find(pet1.shelter_id).name.split.map(&:capitalize).join(' '))
     end
   end
 end
