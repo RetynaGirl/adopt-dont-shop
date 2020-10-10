@@ -1,6 +1,7 @@
 <section>
   <div class="section-head">
     <h2><%= @shelter.name.split.map(&:capitalize).join(' ') %> Pets:</h2>
+    <a href="/shelters/<%= @shelter.id %>/pets/new" class='header-link'>Create Pet</a>
   </div>
   <div class='box-grid'>
     <% @pets.each do |pet| %>
