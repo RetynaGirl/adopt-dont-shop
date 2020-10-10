@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/', to: 'home#home'
+
+  # Shelters REST
   get '/shelters', to: 'shelters#index'
   get '/shelters/new', to: 'shelters#new'
   post '/shelters', to: 'shelters#create'
@@ -10,5 +12,8 @@ Rails.application.routes.draw do
   patch '/shelters/:id', to: 'shelters#update'
   delete '/shelters/:id', to: 'shelters#delete'
 
+  get '/shelters/:id/pets', to: 'shelters#pets'
+
+  # Pets REST
   get '/pets', to: 'pets#index'
 end
