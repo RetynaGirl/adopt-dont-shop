@@ -1,0 +1,16 @@
+<section>
+  <div class="section-head">
+    <h2><%= @shelter.name.split.map(&:capitalize).join(' ') %> Pets:</h2>
+  </div>
+  <div class='box-grid'>
+    <% @pets.each do |pet| %>
+      <div class='box-grid-element'>
+
+        <a href="/pets/<%= pet.id %>" class='pet-link'><%= pet.name %></a>
+        <img src="<%= pet.image %>" alt="Picture of <%= pet.name %>%" class='pet-image'>
+        <p>Age: <%= pet.age %></p>
+        <p>Sex: <%= pet.sex %></p>
+      </div>
+    <% end %>
+  </div>
+</section>
