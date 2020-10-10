@@ -71,3 +71,32 @@ a:active {
 .shelter-info {
   font-size: 20px;
 }
+
+.box-grid-element {
+  display: inline-block;
+  background-color: indianred;
+  padding: 1%;
+  flex: 1;
+  flex-direction: column;
+}
+
+.pet-link {
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px;
+  display: block;
+}
+
+.pet-image {
+  width: 100%;
+}
+
+.pet-shelter-link:link {
+  color: black;
+}
+
+.box-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
