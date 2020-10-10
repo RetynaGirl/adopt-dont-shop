@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
   # Pets REST
   get '/pets', to: 'pets#index'
+  get '/pets/:id', to: 'pets#show'
 end
