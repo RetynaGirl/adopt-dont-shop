@@ -25,7 +25,7 @@ describe 'As a user' do
     it 'Next to every shelter, I see a link to edit that shelters info' do
       visit '/shelters'
 
-      expect(page).to have_link('Edit', count: Shelter.count)
+      expect(page).to have_link('Update', count: Shelter.count)
     end
   end
 
