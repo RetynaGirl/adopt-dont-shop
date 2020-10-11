@@ -64,28 +64,26 @@ describe 'As a visitor' do
 
       expect(page).to have_button('Delete', count: Pet.count)
 
-      page.all('.shelter-action-button').each do |button|
-        button.click
+      page.all('.shelter-action-button').length.times do
+        page.all('.shelter-action-button').each(&:click)
       end
-
-      page.find('.shelter-action-button').click
 
       expect(page).to_not have_button('Delete')
     end
 
     it 'Next to every pet on each shelters pets index page, I see a link to edit that pets info' do
-      Shelter.all.each do |shelter|
-        visit "/shelters/#{shelter.id}/pets"
+      Shelter.count.times do |shelter|
+        Shelter.all.each do |shelter|
+          visit "/shelters/#{shelter.id}/pets"
 
-        expect(page).to have_button('Delete', count: shelter.pets.count)
+          expect(page).to have_button('Delete', count: shelter.pets.count)
 
-        page.all('.shelter-action-button').each do |button|
-          button.click
+          page.all('.shelter-action-button').length.times do
+            page.all('.shelter-action-button').each(&:click)
+          end
+
+          expect(page).to_not have_button('Delete')
         end
-
-        page.find('.shelter-action-button').click
-
-        expect(page).to_not have_button('Delete')
       end
     end
   end
