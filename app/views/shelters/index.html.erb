@@ -3,11 +3,19 @@
     <h2>Shelters:</h2>
     <a href="/shelters/new" class="header-link">New Shelter</a>
   </div>
-  <div>
+  <div class='box-grid'>
     <% @shelters.each do |shelter| %>
-      <a href="/shelters/<%= shelter.id %>" class="shelter-link">
-        <%= shelter.name.split.map(&:capitalize).join(' ') %>
-      </a>
+      <div class='box-grid-element'>
+        <a href="/shelters/<%= shelter.id %>" class="shelter-link">
+          <%= shelter.name.split.map(&:capitalize).join(' ') %>
+        </a>
+        <a href="/shelters/<%= shelter.id %>" class='shelter-action-link'>Update</a>
+        <form action="/shelters/<%= shelter.id %>" method='post' class='inline-form'>
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete" class='shelter-action-button'>
+        </form>
+      </div>
     <% end %>
   </div>
 </section>
