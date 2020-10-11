@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get '/pets', to: 'pets#index'
   get '/pets/:id', to: 'pets#show'
   post '/pets', to: 'pets#new'
+  get '/pets/:id/edit', to: 'pets#edit'
+  patch '/pets/:id', to: 'pets#update'
 end
