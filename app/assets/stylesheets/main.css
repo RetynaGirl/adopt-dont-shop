@@ -91,6 +91,10 @@ a:active {
   width: 100%;
 }
 
+.pet-show-image {
+  max-height: 600px;
+}
+
 .pet-shelter-link:link {
   color: black;
 }
@@ -101,6 +105,15 @@ a:active {
   grid-gap: 10px;
 }
 
-#sex {
-  margin: 3px 5px;
+.form-select {
+  margin: 8px 5px;
+  display: block;
+}
+
+.content-link:link {
+  color: black;
+}
+
+.content-link:visited {
+  color: black;
 }

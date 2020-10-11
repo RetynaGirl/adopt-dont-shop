@@ -6,7 +6,6 @@
   <form action="/pets" method="post">
     <input type="hidden" name="authenticity_token" value='<%= form_authenticity_token %>'>
     <input type="hidden" name="pet[shelter_id]" value=<%= @shelter.id %>>
-    <input type="hidden" name="pet[adoptable]" value=true>
     <div class='form-block'>
       <div class='form-column'>
         <h3>Name:</h3>
@@ -21,7 +20,7 @@
         <input type="text" name="pet[image]">
         <input type="text" name="pet[description]">
         <input type="text" name="pet[age]">
-        <select name="pet[sex]" id="sex">
+        <select name="pet[sex]" class='form-select'>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
