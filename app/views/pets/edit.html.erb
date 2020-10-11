@@ -40,8 +40,8 @@
             <option value="Female">Female</option>
           </select>
           <select name="pet[adoptable]" class="form-select">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+            <option value="true" <%= 'selected' if @pet.adoptable %>>Yes</option>
+            <option value="false" <%= 'selected' unless @pet.adoptable %>>No</option>
           </select>
           <input type="text" name="pet[description]" value="<%= @pet.description %>">
           <select name="pet[shelter_id" class='form-select'>

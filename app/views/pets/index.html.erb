@@ -1,6 +1,10 @@
 <section>
   <div class="section-head">
     <h2>Pets:</h2>
+    <div class='action-element-container-long'>
+      <a href="/pets?filter=adoptable" class='header-link'>Show only adoptable pets</a>
+      <a href="/pets?filter=pending" class='header-link'>Show only adoption-pending pets</a>
+    </div>
   </div>
   <div class='box-grid'>
     <% @pets.each do |pet| %>
@@ -8,12 +12,12 @@
         <div class='pet-header'>
           <a href="/pets/<%= pet.id %>" class='pet-link'><%= pet.name %></a>
           <div class='pet-action-element-container'>
-          <a href="/pets/<%= pet.id %>/edit" class='shelter-action-link'>Update</a>
-          <form action="/pets/<%= pet.id %>" method='post'>
-            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete" class='shelter-action-button'>
-          </form>
+            <a href="/pets/<%= pet.id %>/edit" class='shelter-action-link'>Update</a>
+            <form action="/pets/<%= pet.id %>" method='post'>
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="Delete" class='shelter-action-button'>
+            </form>
           </div>
         </div>
         <img src="<%= pet.image %>" alt="Picture of <%= pet.name %>%" class='pet-image'>

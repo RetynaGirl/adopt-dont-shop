@@ -121,3 +121,7 @@ a:active {
 .content-link:visited {
   color: black;
 }
+
+.block {
+  display: block;
+}
