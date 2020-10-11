@@ -33,7 +33,7 @@ describe 'As a visitor' do
                         sex: 'Male',
                         adoptable: true,
                         description: 'this is a dog',
-                        shelter_id: shelter.id
+                        shelter_id: @shelter.id
                       })
 
   end
@@ -56,21 +56,23 @@ describe 'As a visitor' do
         expect(page).to have_field('pet[name]')
       end
 
-      describe "When I fill out the form with updated information and click 'Update Pet'" do
-        it 'I am redirected to the pet show page with the updated pet information' do
-          visit "/pets/#{@pet.id}/edit"
-
-          fill_in('pet[name]', with: 'Dave')
-          select('Female', from: 'pet[sex]')
-
-          click_on('Update Pet')
-
-          expect(page).to have_current_path("/pets/#{@pet1.id}")
-
-          expect(page).to have_content('Female')
-          expect(page).to have_content('Dave')
-        end
-      end
     end
+
+  end
+  describe "When I fill out the form with updated information and click 'Update Pet'" do
+    it 'I am redirected to the pet show page with the updated pet information' do
+      visit "/pets/#{@pet1.id}/edit"
+
+      fill_in('pet[name]', with: 'Dave')
+      select('Female', from: 'pet[sex]')
+
+      click_on('Update Pet')
+
+      expect(page).to have_current_path("/pets/#{@pet1.id}")
+
+      expect(page).to have_content('Female')
+      expect(page).to have_content('Dave')
+    end
+
   end
 end
