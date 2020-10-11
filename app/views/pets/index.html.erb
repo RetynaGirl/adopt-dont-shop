@@ -5,8 +5,10 @@
   <div class='box-grid'>
     <% @pets.each do |pet| %>
       <div class='box-grid-element'>
-
+        <div class='pet-header'>
         <a href="/pets/<%= pet.id %>" class='pet-link'><%= pet.name %></a>
+        <a href="/pets/<%= pet.id %>/edit" class='shelter-action-link'>Update</a>
+        </div>
         <img src="<%= pet.image %>" alt="Picture of <%= pet.name %>%" class='pet-image'>
         <p>Age: <%= pet.age %></p>
         <p>Sex: <%= pet.sex %></p>
