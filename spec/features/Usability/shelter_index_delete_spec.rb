@@ -34,14 +34,14 @@ describe 'As a user' do
     it 'the shelter is deleted' do
       visit '/shelters'
 
-      save_and_open_page
+
 
       page.all('.shelter-action-button').each do |button|
         button.click
       end
 
       page.find('.shelter-action-button').click
-      save_and_open_page
+
       expect(page).to_not have_button('Delete')
     end
   end
