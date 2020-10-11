@@ -99,6 +99,10 @@ a:active {
   color: black;
 }
 
+.pet-shelter-link:visited {
+  color: black;
+}
+
 .box-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

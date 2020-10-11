@@ -11,7 +11,7 @@
         <p>Age: <%= pet.age %></p>
         <p>Sex: <%= pet.sex %></p>
         <p>
-          Shelter: <a href="/shelters/<%= Shelter.find(pet.shelter_id) %>" class='pet-shelter-link'>
+          Shelter: <a href="/shelters/<%= pet.shelter_id %>" class='pet-shelter-link'>
             <%= Shelter.find(pet.shelter_id).name.split.map(&:capitalize).join(' ') %>
           </a>
         </p>
