@@ -19,7 +19,7 @@ describe 'As a visitor' do
                              zip: '12345')
 
     @pet1 = Pet.create({
-                        name: 'Charles',
+                        name: 'Wasabi',
                         image: 'https://images.dog.ceo/breeds/terrier-norwich/n02094258_230.jpg',
                         age: 3,
                         sex: 'Male',
@@ -34,7 +34,7 @@ describe 'As a visitor' do
     it 'I see a link to delete the pet "Delete Pet"' do
       visit "/pets/#{@pet1.id}"
 
-      expect(page).to have_button("Delete Pet")
+      expect(page).to have_button('Delete Pet')
     end
   end
 
