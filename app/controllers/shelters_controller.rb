@@ -1,6 +1,17 @@
 class SheltersController < ApplicationController
   def index
-    @shelters = Shelter.all
+    # require 'pry'; binding.pry
+    shelters = Shelter.all
+    case params[:sort]
+    when 'alph'
+      @shelters = shelters.sort_by(&:name)
+    when 'pets'
+      @shelters = shelters.sort_by { |shelter| shelter.pets.count }.reverse
+    else
+      @shelters = shelters
+    end
+    # require 'pry'; binding.pry
+
   end
 
   def show
@@ -54,7 +65,12 @@ class SheltersController < ApplicationController
 
   def pets
     @shelter = Shelter.find(params[:id])
-    @pets = @shelter.pets
+    @pets = @shelter.pets.partition{ |pet| pet.adoptable }.flatten
+    if params[:filter] == 'adoptable'
+      @pets = @pets.select(&:adoptable)
+    elsif params[:filter] == 'pending'
+      @pets = @pets.reject(&:adoptable)
+    end
   end
 
   def new_pet

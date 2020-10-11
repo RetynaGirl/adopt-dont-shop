@@ -2,7 +2,11 @@
   <div class="section-head">
     <h2><%= @shelter.name.split.map(&:capitalize).join(' ') %> Pets:</h2>
     <a href="/shelters/<%= @shelter.id %>/pets/new" class='header-link'>Create Pet</a>
+    <a href="/shelters/<%= @shelter.id %>/pets?filter=adoptable" class='header-link'>Show only adoptable pets</a>
+    <a href="/shelters/<%= @shelter.id %>/pets?filter=pending" class='header-link'>Show only adoption-pending pets</a>
+    <a href="/shelters/<%= @shelter.id %>/pets" class='header-link'>Show all pets for this shelter</a>
   </div>
+  <h3 class='block'>This shelter has <%= @shelter.pets.count %> pets.</h3>
   <div class='box-grid'>
     <% @pets.each do |pet| %>
       <div class='box-grid-element'>
