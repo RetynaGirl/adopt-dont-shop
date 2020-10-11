@@ -1,6 +1,11 @@
 class PetsController < ApplicationController
   def index
-    @pets = Pet.all
+    @pets = Pet.all.partition{ |pet| pet.adoptable }.flatten
+    if params[:filter] == 'adoptable'
+      @pets = @pets.select(&:adoptable)
+    elsif params[:filter] == 'pending'
+      @pets = @pets.reject(&:adoptable)
+    end
   end
 
   def show

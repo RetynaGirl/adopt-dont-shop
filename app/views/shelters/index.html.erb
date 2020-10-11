@@ -2,6 +2,8 @@
   <div class="section-head">
     <h2>Shelters:</h2>
     <a href="/shelters/new" class="header-link">New Shelter</a>
+    <a href="/shelters?sort=alph" class='header-link'>Sort Alphabetically</a>
+    <a href="/shelters?sort=pets" class='header-link'>Sort by Adoptable Pets</a>
   </div>
   <div class='box-grid'>
     <% @shelters.each do |shelter| %>
