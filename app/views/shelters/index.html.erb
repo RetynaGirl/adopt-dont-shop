@@ -3,11 +3,14 @@
     <h2>Shelters:</h2>
     <a href="/shelters/new" class="header-link">New Shelter</a>
   </div>
-  <div>
+  <div class='box-grid'>
     <% @shelters.each do |shelter| %>
-      <a href="/shelters/<%= shelter.id %>" class="shelter-link">
-        <%= shelter.name.split.map(&:capitalize).join(' ') %>
-      </a>
+      <div class='box-grid-element'>
+        <a href="/shelters/<%= shelter.id %>" class="shelter-link">
+          <%= shelter.name.split.map(&:capitalize).join(' ') %>
+        </a>
+        <a href="/shelters/<%= shelter.id %>" class='shelter-action-link'>Update</a>
+      </div>
     <% end %>
   </div>
 </section>
