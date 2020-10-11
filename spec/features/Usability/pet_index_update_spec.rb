@@ -10,12 +10,12 @@ require 'rails_helper'
 
 describe 'As a visitor' do
   before(:each) do
-    shelter1 = Shelter.create(name: 'Bobby',
+    @shelter1 = Shelter.create(name: 'Bobby',
                               address: '123 halmock st',
                               city: 'dover',
                               state: 'florida',
                               zip: '12345')
-    shelter2 = Shelter.create(name: 'Joe',
+    @shelter2 = Shelter.create(name: 'Joe',
                               address: '123 bismark st',
                               city: 'london',
                               state: 'texas',
@@ -62,14 +62,14 @@ describe 'As a visitor' do
     it 'Next to every pet on the pets index page, I see a link to edit that pets info' do
       visit '/pets'
 
-      expect(page).to have_link('Update', count: Pets.count)
+      expect(page).to have_link('Update', count: Pet.count)
     end
 
     it 'Next to every pet on each shelters pets index page, I see a link to edit that pets info' do
       Shelter.all.each do |shelter|
         visit "/shelters/#{shelter.id}/pets"
 
-        expect(page).to have_link('Update', shelter.pets.count)
+        expect(page).to have_link('Update', :count => shelter.pets.count)
       end
     end
   end
