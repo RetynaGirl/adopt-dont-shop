@@ -15,6 +15,17 @@
   background-color: indianred;
 }
 
+.shelter-action-link {
+  background-color: #0f69d1;
+  font-size: 15px;
+  padding: 4px;
+  border: black solid 2px;
+  margin-left: 20px;
+  float: right;
+}
+
+}
+
 #delete-submit {
   color: #00ffee;
   height: 29px;
