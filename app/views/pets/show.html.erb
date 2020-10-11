@@ -9,14 +9,14 @@
       <input type="submit" value="Delete pet" class='header-link' id='delete-submit'>
     </form>
   </div>
-  <img src="<%= @pet.image %>" alt="Photo of <%= @pet.name.split.map(&:capitalize).join(' ') %>">
+  <img src="<%= @pet.image %>" alt="Photo of <%= @pet.name.split.map(&:capitalize).join(' ') %>" class='pet-show-image'>
   <div>
     <p class='pet-info'>
       <%= @pet.description.capitalize %> <br>
       Age: <%= @pet.age %> <br>
       Sex: <%= @pet.sex %> <br>
       Can you adopt <%= @pet.name.split.map(&:capitalize).join(' ') %>? <%= @adoptability %> <br>
-      <a href="/shelters/<%= @shelter.id %>"><%= @shelter.name %></a>
+      Location: <a href="/shelters/<%= @shelter.id %>" class='content-link'><%= @shelter.name.split.map(&:capitalize).join(' ') %></a>
     </p>
   </div>
 </section>
