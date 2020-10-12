@@ -4,7 +4,7 @@ class SheltersController < ApplicationController
     shelters = Shelter.all
     case params[:sort]
     when 'alph'
-      @shelters = shelters.sort_by(&:name)
+      @shelters = shelters.sort_by { |shelter| shelter.name.capitalize }
     when 'pets'
       @shelters = shelters.sort_by { |shelter| shelter.pets.count }.reverse
     else
