@@ -36,16 +36,16 @@
           <input type="text" name="pet[image]" value="<%= @pet.image %>">
           <input type="text" name="pet[age]" value="<%= @pet.age %>">
           <select name="pet[sex]" class="form-select">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="Male" <%= 'selected' if @pet.sex == 'Male' %>>Male</option>
+            <option value="Female" <%= 'selected' if @pet.sex == 'Female' %>>Female</option>
           </select>
           <select name="pet[adoptable]" class="form-select">
             <option value="true" <%= 'selected' if @pet.adoptable %>>Yes</option>
             <option value="false" <%= 'selected' unless @pet.adoptable %>>No</option>
           </select>
           <input type="text" name="pet[description]" value="<%= @pet.description %>">
-          <select name="pet[shelter_id" class='form-select'>
-          <option value="<%= @shelter.id %>" selected><%= @shelter.name %></option>
+          <select name="pet[shelter_id]" class='form-select'>
+            <option value="<%= @shelter.id %>" selected><%= @shelter.name %></option>
             <% @other_shelters.each do |shelter| %>
               <option value="<%= shelter.id %>"><%= shelter.name.split.map(&:capitalize).join(' ') %></option>
             <% end %>
