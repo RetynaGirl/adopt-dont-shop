@@ -12,7 +12,7 @@
       Approximate Age: <%= @pet.age %> <br>
       Sex: <%= @pet.sex %> <br>
       Adoptable: <%= @adoptability %> <br>
-      Shelter: <%= @shelter.name %> <br>
+      Shelter: <%= @pet.shelter.name %> <br>
       <br>
       <%= @pet.description %>
     </p>
@@ -45,9 +45,8 @@
           </select>
           <input type="text" name="pet[description]" value="<%= @pet.description %>">
           <select name="pet[shelter_id]" class='form-select'>
-            <option value="<%= @shelter.id %>" selected><%= @shelter.name %></option>
-            <% @other_shelters.each do |shelter| %>
-              <option value="<%= shelter.id %>"><%= shelter.name.split.map(&:capitalize).join(' ') %></option>
+            <% @shelters.each do |shelter| %>
+              <option value="<%= shelter.id %>" <%= 'selected' if @pet.shelter_id == shelter.id %>><%= shelter.name.split.map(&:capitalize).join(' ') %></option>
             <% end %>
           </select>
 

@@ -25,7 +25,7 @@
         <p>Sex: <%= pet.sex %></p>
         <p>
           Shelter: <a href="/shelters/<%= pet.shelter_id %>" class='pet-shelter-link'>
-            <%= Shelter.find(pet.shelter_id).name.split.map(&:capitalize).join(' ') %>
+            <%= pet.shelter.name.split.map(&:capitalize).join(' ') %>
           </a>
         </p>
       </div>

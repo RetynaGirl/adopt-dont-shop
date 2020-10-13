@@ -59,7 +59,7 @@ describe 'As a visitor' do
                        })
   end
   describe 'When I visit the pets index page or a shelter pets index page' do
-    it 'Next to every pet on the pets index page, I see a link to edit that pets info' do
+    it 'Next to every pet on the pets index page, I see a link to delete that pet' do
       visit '/pets'
 
       expect(page).to have_button('Delete', count: Pet.count)
@@ -71,20 +71,19 @@ describe 'As a visitor' do
       expect(page).to_not have_button('Delete')
     end
 
-    it 'Next to every pet on each shelters pets index page, I see a link to edit that pets info' do
-      Shelter.count.times do |shelter|
-        Shelter.all.each do |shelter|
-          visit "/shelters/#{shelter.id}/pets"
+    it 'Next to every pet on each shelters pets index page, I see a link to delete that pet' do
+      visit "/shelters/#{@shelter1.id}/pets"
 
-          expect(page).to have_button('Delete', count: shelter.pets.count)
+      expect(page).to have_button('Delete', count: 2)
 
-          page.all('.shelter-action-button').length.times do
-            page.all('.shelter-action-button').each(&:click)
-          end
 
-          expect(page).to_not have_button('Delete')
-        end
-      end
+
+
+      visit "/shelters/#{@shelter2.id}/pets"
+
+      expect(page).to have_button('Delete', count: 2)
+
+
     end
   end
 end
