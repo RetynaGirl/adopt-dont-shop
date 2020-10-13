@@ -26,6 +26,7 @@ class PetsController < ApplicationController
       sex: params[:pet][:sex],
       shelter_id: params[:pet][:shelter_id],
       description: params[:pet][:description],
+      adoptable: true
     )
 
     redirect_to "/shelters/#{@pet.shelter_id}/pets"
@@ -33,8 +34,8 @@ class PetsController < ApplicationController
 
   def edit
     @pet = Pet.find(params[:id])
-    @shelter = @pet.shelter
-    @other_shelters = Shelter.all.reject { |shelter| shelter.id == @shelter.id }
+
+    @shelters = Shelter.all
     @adoptability = if @pet.adoptable
                       'Yes'
                     else

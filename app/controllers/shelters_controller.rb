@@ -1,14 +1,14 @@
 class SheltersController < ApplicationController
   def index
     # require 'pry'; binding.pry
-    shelters = Shelter.all
     case params[:sort]
     when 'alph'
-      @shelters = shelters.sort_by { |shelter| shelter.name.capitalize }
+      @shelters = Shelter.order(:name)
     when 'pets'
-      @shelters = shelters.sort_by { |shelter| shelter.pets.count }.reverse
+      # Not on database, will fix
+      @shelters = Shelter.all.sort_by { |shelter| shelter.pets.select(&:adoptable).count }.reverse
     else
-      @shelters = shelters
+      @shelters = Shelter.all
     end
     # require 'pry'; binding.pry
 
@@ -22,7 +22,7 @@ class SheltersController < ApplicationController
 
   def create
     Shelter.create({
-                     name: params[:shelter][:name],
+                     name: params[:shelter][:name].titleize,
                      address: params[:shelter][:address],
                      city: params[:shelter][:city],
                      state: params[:shelter][:state],
@@ -45,7 +45,7 @@ class SheltersController < ApplicationController
     # shelter.zip = params[:shelter][:zip]
 
     shelter.update({
-                     name: params[:shelter][:name],
+                     name: params[:shelter][:name].titleize,
                      address: params[:shelter][:address],
                      city: params[:shelter][:city],
                      state: params[:shelter][:state],
