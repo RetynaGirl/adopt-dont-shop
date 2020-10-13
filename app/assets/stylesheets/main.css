@@ -72,6 +72,10 @@ a:active {
   font-size: 20px;
 }
 
+.user-info {
+  font-size: 20px;
+}
+
 .box-grid-element {
   display: inline-block;
   background-color: indianred;
