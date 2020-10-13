@@ -1,0 +1,19 @@
+<section>
+  <div class='section-head'>
+    <h2><%= @user.name %></h2>
+    <a href="/users/<%= @user.id %>/edit" class='header-link'>Update User</a>
+
+    <form action="/users/<%= @user.id %>" method='post'>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete User" class='header-link' id='delete-submit'>
+    </form>
+  </div>
+
+  <div>
+    <p class='user-info'>
+      <%= @user.address %> <br>
+      <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+    </p>
+  </div>
+</section>
