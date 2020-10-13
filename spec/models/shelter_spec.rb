@@ -12,6 +12,9 @@ describe Shelter, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many :pets }
+    it do
+       should have_many :pets
+       should have_many :reviews
+    end
   end
 end

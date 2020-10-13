@@ -10,4 +10,10 @@ describe User, type: :model do
       validate_presence_of :zip
     end
   end
+
+  describe 'relationships' do
+    it do
+      should have_many :reviews
+    end
+  end
 end
