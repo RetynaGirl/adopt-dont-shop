@@ -17,4 +17,18 @@
       <%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip %>
     </p>
   </div>
+
+  <div>
+    <% @shelter.reviews.each do |review| %>
+    <div>
+      <h3><%= review.title %></h3>
+      <p>
+        <%= review.rating %> stars, by <%= review.user.name %>
+        <img src="<%= review.image %>" alt="user image for review">
+        <%= review.content %>
+      </p>
+    </div>
+    <% end%>
+  </div>
+
 </section>
