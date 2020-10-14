@@ -137,7 +137,12 @@ a:active {
 }
 
 .review-block {
-  background-color: indianred;
   width: fit-content;
+  padding: 5px;
+}
+
+.review-section {
+  background-color: indianred;
+  margin: 5px;
   padding: 5px;
 }

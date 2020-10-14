@@ -16,4 +16,22 @@
       <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
     </p>
   </div>
+
+  <div class='review-block'>
+    <div class='section-head'>
+      <h3>Reviews:</h3>
+    </div>
+    <% @user.reviews.each do |review| %>
+      <div id="review-<%= review.id %>" class='review-section'>
+        <h3><%= review.title %></h3>
+        <p>
+          <%= review.rating %> stars, by <%= review.user.name %>
+        </p>
+        <img src="<%= review.image %>" alt="user image for review">
+        <p>
+          <%= review.content %>
+        </p>
+      </div>
+    <% end%>
+  </div>
 </section>
