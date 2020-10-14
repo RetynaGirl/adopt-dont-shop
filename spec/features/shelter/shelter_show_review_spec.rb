@@ -26,7 +26,7 @@ describe 'As a visitor' do
       @review = Review.create(title:"Great shelter",
                               rating: 4,
                               content: "They treat their pets well.",
-                              image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg'
+                              image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
                               user: @user,
                               shelter: @shelter)
       
