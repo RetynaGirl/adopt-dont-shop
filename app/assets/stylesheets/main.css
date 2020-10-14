@@ -118,6 +118,12 @@ a:active {
   display: block;
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: [first] 100px [second] 170px;
+  grid-column-gap: 10px;
+}
+
 .content-link:link {
   color: black;
 }
@@ -128,4 +134,10 @@ a:active {
 
 .block {
   display: block;
+}
+
+.review-block {
+  background-color: indianred;
+  width: fit-content;
+  padding: 5px;
 }
