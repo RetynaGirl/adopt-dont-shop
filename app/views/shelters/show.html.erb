@@ -18,16 +18,22 @@
     </p>
   </div>
 
-  <div>
-    <% @shelter.reviews.each do |review| %>
-    <div>
-      <h3><%= review.title %></h3>
-      <p>
-        <%= review.rating %> stars, by <%= review.user.name %>
-        <img src="<%= review.image %>" alt="user image for review">
-        <%= review.content %>
-      </p>
+  <div class='review-block'>
+    <div class='section-head'>
+      <h3>Reviews:</h3>
+      <a href="/shelters/<%= @shelter.id %>/reviews/new" class='header-link'>Add Review</a>
     </div>
+    <% @shelter.reviews.each do |review| %>
+      <div>
+        <h3><%= review.title %></h3>
+        <p>
+          <%= review.rating %> stars, by <%= review.user.name %>
+        </p>
+        <img src="<%= review.image %>" alt="user image for review">
+        <p>
+          <%= review.content %>
+        </p>
+      </div>
     <% end%>
   </div>
 

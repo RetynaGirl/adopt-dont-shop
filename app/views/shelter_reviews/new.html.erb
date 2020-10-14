@@ -1,0 +1,26 @@
+<section>
+  <div class='section-head'>
+    <h2>New Review:</h2>
+  </div>
+
+  <form action="/reviews" method="post">
+    <input type="hidden" name="authenticity_token" value='<%= form_authenticity_token %>'>
+    <input type="hidden" name="review[shelter_id]" value='<%= @shelter.id %>'>
+    <div class='form-grid'>
+
+      <h3>Title:</h3>
+      <input type="text" name="review[title]">
+      <h3>Rating:</h3>
+      <%= select_tag 'review[rating]', options_for_select([1, 2, 3, 4, 5], 5), class: 'form-select' %>
+      <h3>Content:</h3>
+      <textarea name="review[content]" cols="30" rows="10" class='form-select'>Write your review here</textarea>
+      <h3>Username:</h3>
+      <%= select_tag 'review[user_id]', options_from_collection_for_select(@users, :id, :name), class: 'form-select' %>
+      <h3>Image:</h3>
+      <input type="text" name="review[image]">
+
+    </div>
+    <input type="submit" id='submit' value='Create Review'>
+
+  </form>
+</section>
