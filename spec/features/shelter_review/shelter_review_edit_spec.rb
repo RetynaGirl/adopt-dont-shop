@@ -71,8 +71,7 @@ describe 'As a visitor' do
         expect(page).to have_content('1')
         expect(page).to have_content('This place really sucks, its horrible')
         expect(page).to have_content('Bob')
-
-        expect(page).to_not have_xpath("//img[@src='#{@review.image}']")
+        expect(page).to_not have_selector("img")
       end
     end
   end
