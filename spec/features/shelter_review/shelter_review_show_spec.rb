@@ -1,3 +1,4 @@
+require 'rails_helper'
 # User Story 4, Shelter Reviews
 
 # As a visitor,
