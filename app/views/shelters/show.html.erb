@@ -20,16 +20,21 @@
 
   <div class='review-block'>
     <div class='section-head'>
-      <h3>Reviews:</h3>
+      <h2 class='padded'>Reviews:</h2>
       <a href="/shelters/<%= @shelter.id %>/reviews/new" class='header-link'>Add Review</a>
     </div>
     <% @shelter.reviews.each do |review| %>
-      <div>
-        <h3><%= review.title %></h3>
+      <div id='review-<%= review.id %>' class='review-section'>
+        <div class='section-head'>
+          <h3><%= review.title %></h3>
+          <a href="/reviews/<%= review.id %>/edit" class='header-link'>Update Review</a>
+        </div>
         <p>
           <%= review.rating %> stars, by <%= review.user.name %>
         </p>
-        <img src="<%= review.image %>" alt="user image for review">
+        <% if review.image != '' %>
+          <img src="<%= review.image %>" alt="user image for review">
+        <% end %>
         <p>
           <%= review.content %>
         </p>
