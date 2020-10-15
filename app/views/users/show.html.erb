@@ -27,7 +27,9 @@
         <p>
           <%= review.rating %> stars, by <%= review.user.name %>
         </p>
-        <img src="<%= review.image %>" alt="user image for review">
+        <% if review.image != '' %>
+          <img src="<%= review.image %>" alt="user image for review">
+        <% end %>
         <p>
           <%= review.content %>
         </p>
