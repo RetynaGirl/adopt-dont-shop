@@ -45,7 +45,7 @@ describe 'As a visitor' do
       visit "/shelters/#{@shelter.id}"
 
       within("#review-#{@review.id}") do
-        click_link('Update Review')
+        click_link('Update')
       end
 
       expect(page).to have_current_path("/reviews/#{@review.id}/edit")
@@ -62,7 +62,7 @@ describe 'As a visitor' do
       fill_in('review[image]', with: '')
       select('Bob', from: 'review[user_id]')
 
-      click_button('Update Review')
+      click_button('Update')
 
       expect(page).to have_current_path("/shelters/#{@shelter.id}")
 
@@ -71,8 +71,7 @@ describe 'As a visitor' do
         expect(page).to have_content('1')
         expect(page).to have_content('This place really sucks, its horrible')
         expect(page).to have_content('Bob')
-
-        expect(page).to_not have_xpath("//img[@src='#{@review.image}']")
+        expect(page).to_not have_selector("img")
       end
     end
   end
