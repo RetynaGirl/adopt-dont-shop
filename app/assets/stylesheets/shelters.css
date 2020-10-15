@@ -42,7 +42,7 @@
   float: right;
 }
 
-#delete-submit {
+.delete-submit {
   color: #00ffee;
   height: 29px;
   font-size: 15px;
