@@ -1,14 +1,18 @@
 class User < ApplicationRecord
   has_many :reviews
 
+  def review_average
+    reviews.average(:rating)
+  end
+
   def highlighted_reviews
-    ordered = self.reviews.order(rating: :desc)
-    if self.reviews.size < 2
-      return nil
+    ordered = reviews.order(rating: :desc)
+    if reviews.size < 2
+      nil
     else
       best_review = ordered.first
       worst_review = ordered.last
-      return [best_review, worst_review]
+      [best_review, worst_review]
     end
   end
 end

@@ -18,9 +18,42 @@ describe User, type: :model do
   end
 
   describe 'instance methods' do
+    it '#review_average' do
+      @shelter = Shelter.create(name: 'Bobby',
+                                address: '123 halmock st',
+                                city: 'dover',
+                                state: 'florida',
+                                zip: '12345')
+      @user = User.create(name: 'Jake',
+                          address: '1234 1st St',
+                          city: 'Denver',
+                          state: 'CO',
+                          zip: '80213')
+
+      @user2 = User.create(name: 'Harold',
+                           address: '1234 1st St',
+                           city: 'Denver',
+                           state: 'CO',
+                           zip: '80213')
+      @review = Review.create!(title: 'Great shelter',
+                               rating: 4,
+                               content: 'They treat their pets well.',
+                               image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
+                               user: @user,
+                               shelter: @shelter)
+      @review2 = Review.create!(title: 'Great shelter',
+                                rating: 3,
+                                content: 'They treat their pets well.',
+                                image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
+                                user: @user,
+                                shelter: @shelter)
+
+      expect(@user.review_average).to eq(3.5)
+    end
+
     it 'can calculate highest and lowest rating reviews' do
       @shelter = Shelter.create(name: "Al",address:"234 south st", city: "boulder", state: 'CO', zip: "80231")
-      
+
       @user = User.create(name: 'Jake',
                           address: '1234 1st St',
                           city: 'Denver',
@@ -50,7 +83,7 @@ describe User, type: :model do
                               image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
                               user: @user,
                               shelter: @shelter)
-      
+
 
       expect(@user.highlighted_reviews).to eq ([@review4, @review1])
     end
