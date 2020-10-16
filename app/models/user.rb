@@ -8,7 +8,9 @@ class User < ApplicationRecord
     elsif self.reviews.size == 1
       return [self.reviews]
     else
-      return [ordered.first, ordered.last]
+      best_review = ordered.first
+      worst_review = ordered.last
+      return [best_review, worst_review]
     end
   end
 end
