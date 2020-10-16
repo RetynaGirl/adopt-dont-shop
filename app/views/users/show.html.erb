@@ -17,6 +17,46 @@
     </p>
   </div>
 
+  <% if @user.highlighted_reviews %>
+    <div class='review-block'>
+      <div class='section-head'>
+        <h3>Highlighted Reviews:</h3>
+      </div>
+
+      <h3>Best Review:</h3>
+      <div id="hl-review-<%= @user.highlighted_reviews.first.id %>" class='review-section'>
+        <h3><%= @user.highlighted_reviews.first.title %></h3>
+        <p>
+          <%= @user.highlighted_reviews.first.rating %> stars, by <%= @user.highlighted_reviews.first.user.name %>
+        </p>
+        <% if @user.highlighted_reviews.first.image != '' %>
+          <img src="<%= @user.highlighted_reviews.first.image %>" alt="user image for review">
+        <% end %>
+        <p>
+          <%= @user.highlighted_reviews.first.content %>
+        </p>
+      </div>
+
+      <h3>Worst Review:</h3>
+      <div id="hl-review-<%= @user.highlighted_reviews.last.id %>" class='review-section'>
+        <h3><%= @user.highlighted_reviews.last.title %></h3>
+        <p>
+          <%= @user.highlighted_reviews.last.rating %> stars, by <%= @user.highlighted_reviews.last.user.name %>
+        </p>
+        <% if @user.highlighted_reviews.last.image != '' %>
+          <img src="<%= @user.highlighted_reviews.last.image %>" alt="user image for review">
+        <% end %>
+        <p>
+          <%= @user.highlighted_reviews.last.content %>
+        </p>
+      </div>
+
+    </div>
+
+
+  <% end%>
+
+
   <div class='review-block'>
     <div class='section-head'>
       <h3>Reviews:</h3>

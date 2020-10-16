@@ -25,16 +25,44 @@ describe 'As a visitor' do
                             image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
                             user: @user,
                             shelter: @shelter)
+    @review2 = Review.create(title: 'ok shelter',
+                              rating: 2,
+                              content: 'meh...',
+                              image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
+                              user: @user,
+                              shelter: @shelter)
+      @review3 = Review.create(title: 'better shelter',
+                              rating: 3,
+                              content: 'They treat their pets well.',
+                              image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
+                              user: @user,
+                              shelter: @shelter)
+      @review4 = Review.create(title: 'Great shelter',
+                              rating: 4,
+                              content: "They're radical!",
+                              image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
+                              user: @user,
+                              shelter: @shelter)
   end
   describe 'when I visit a users show page' do
     it 'I see every review this user has written including review details' do
        visit "users/#{@user.id}"
-
+       
        within("#review-#{@review.id}") do
         expect(page).to have_content(@review.title)
         expect(page).to have_content(@review.rating)
         expect(page).to have_content(@review.content)
-       end
+      end
+    end
+    it "I see the best and worst review for the user" do
+      visit "users/#{@user.id}"
+      @user.highlighted_reviews.each do |review|
+        within("#hl-review-#{review.id}") do
+          expect(page).to have_content(review.title)
+          expect(page).to have_content(review.rating)
+          expect(page).to have_content(review.content)
+        end
+      end
     end
   end
 end

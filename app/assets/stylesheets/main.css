@@ -140,6 +140,12 @@ a:active {
   display: block;
 }
 
+.hl-outer-block {
+  display: flex;
+  width: fit-content;
+  border: 1px solid black;
+}
+
 .review-block {
   width: fit-content;
   padding: 5px;
