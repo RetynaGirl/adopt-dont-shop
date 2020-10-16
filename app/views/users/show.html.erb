@@ -17,6 +17,29 @@
     </p>
   </div>
 
+  <div class = 'hl-review-block'>
+    <div class='review-block'>
+      <div class='section-head'>
+        <h3>Highlighted Reviews:</h3>
+      </div>
+      <% @user.highlighted_reviews.each do |review| %>
+        <div id="hl-review-<%= review.id %>" class='review-section'>
+          <h3><%= review.title %></h3>
+          <p>
+            <%= review.rating %> stars, by <%= review.user.name %>
+          </p>
+          <% if review.image != '' %>
+            <img src="<%= review.image %>" alt="user image for review">
+          <% end %>
+          <p>
+            <%= review.content %>
+          </p>
+        </div>
+      <% end%>
+    </div>
+  </div>
+
+
   <div class='review-block'>
     <div class='section-head'>
       <h3>Reviews:</h3>

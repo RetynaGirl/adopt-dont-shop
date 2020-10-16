@@ -52,7 +52,7 @@ describe User, type: :model do
                               shelter: @shelter)
       
 
-      expect(@user.best_worst_review).to eq ([@review4, @review1])
+      expect(@user.highlighted_reviews).to eq ([@review4, @review1])
     end
   end
 end
