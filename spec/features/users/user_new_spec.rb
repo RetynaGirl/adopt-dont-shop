@@ -30,7 +30,7 @@ describe 'As a visitor' do
 
       visit "/users/new"
       fill_in('user[name]', with: 'Jake')
-          fill_in('user[address]', with: '234 First St.')
+          fill_in('user[address]', with: '1234 First St.')
       fill_in('user[city]', with: 'Denver')
       fill_in('user[state]', with: 'CO')
       fill_in('user[zip]', with: '80123')

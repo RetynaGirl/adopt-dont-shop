@@ -10,11 +10,11 @@ describe Review, type: :model do
 
   describe 'verificaions' do
     it do
-      validate_presence_of :title
-      validate_presence_of :rating
-      validate_presence_of :content
-      validate_presence_of :user_id
-      validate_presence_of :shelter_id
+      should validate_presence_of :title
+      should validate_presence_of :rating
+      should validate_presence_of :content
+      should validate_presence_of :user_id
+      should validate_presence_of :shelter_id
     end
   end
 end

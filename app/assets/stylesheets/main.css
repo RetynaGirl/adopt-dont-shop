@@ -119,7 +119,7 @@ a:active {
 
 .form-select {
   margin: 8px 5px;
-  display: block;
+  display: inline-block;
 }
 
 .form-grid {
@@ -140,6 +140,12 @@ a:active {
   display: block;
 }
 
+.hl-outer-block {
+  display: flex;
+  width: fit-content;
+  border: 1px solid black;
+}
+
 .review-block {
   width: fit-content;
   padding: 5px;
@@ -149,4 +155,27 @@ a:active {
   background-color: indianred;
   margin: 5px;
   padding: 5px;
+}
+
+.error-message {
+  background-color: red;
+  border: 2px solid black;
+  color: black;
+  width: fit-content;
+  padding: 2px;
+  margin: 5px;
+}
+
+.required-tag {
+  color: red;
+  display: inline;
+}
+
+.input-block {
+  display: inline;
+  width: max-content;
+}
+
+textarea {
+  display: inline-block;
 }
