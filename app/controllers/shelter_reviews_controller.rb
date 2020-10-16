@@ -30,7 +30,7 @@ class ShelterReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review.update(
+    @review.assign_attributes(
       title: params[:review][:title],
       rating: params[:review][:rating],
       content: params[:review][:content],
@@ -38,8 +38,14 @@ class ShelterReviewsController < ApplicationController
       shelter_id: params[:review][:shelter_id],
       image: params[:review][:image]
     )
+    if @review.save
 
-    redirect_to "/shelters/#{@review.shelter_id}"
+      redirect_to "/shelters/#{@review.shelter_id}"
+    else
+
+      flash[:error] = 'Please enter data in all required (*) fields'
+      redirect_to "/reviews/#{params[:id]}/edit"
+    end
   end
 
   def delete
