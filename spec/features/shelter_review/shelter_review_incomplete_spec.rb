@@ -40,8 +40,8 @@ describe 'As a visitor' do
       # Testing no inputs
       click_button('Create Review')
 
-      expect(page).to have_content('Please enter data in all required (*) fields')
       expect(page).to have_current_path("/shelters/#{@shelter.id}/reviews/new")
+      expect(page).to have_content('Please enter data in all required (*) fields')
 
       # Testing title only
       fill_in('review[title]', with: 'Horrible place')
@@ -69,7 +69,7 @@ describe 'As a visitor' do
       fill_in('review[title]', with: '')
       fill_in('review[content]', with: '')
 
-      click_button('Update Review')
+      click_button('Update')
 
       expect(page).to have_content('Please enter data in all required (*) fields')
       expect(page).to have_current_path("/reviews/#{@review.id}/edit")
@@ -77,7 +77,7 @@ describe 'As a visitor' do
       # Testing title only
       fill_in('review[title]', with: '')
 
-      click_button('Update Review')
+      click_button('Update')
 
       expect(page).to have_content('Please enter data in all required (*) fields')
       expect(page).to have_current_path("/reviews/#{@review.id}/edit")
@@ -85,7 +85,7 @@ describe 'As a visitor' do
       # Testing content only
       fill_in('review[content]', with: '')
 
-      click_button('Update Review')
+      click_button('Update')
 
       expect(page).to have_content('Please enter data in all required (*) fields')
       expect(page).to have_current_path("/reviews/#{@review.id}/edit")
