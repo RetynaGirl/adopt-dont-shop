@@ -9,17 +9,22 @@
     <div class='form-grid'>
 
       <h3>Title:</h3>
-      <input type="text" name="review[title]">
+      <div class='input-block'><input type="text" name="review[title]"> <div class='required-tag'>*</div></div>
       <h3>Rating:</h3>
       <%= select_tag 'review[rating]', options_for_select([5, 4, 3, 2, 1], 5), class: 'form-select' %>
       <h3>Content:</h3>
-      <textarea name="review[content]" cols="30" rows="10" class='form-select'>Write your review here</textarea>
+      <div class='input-block'><textarea name="review[content]" cols="30" rows="10" class='form-select'></textarea><div class='required-tag'>*</div></div>
       <h3>Username:</h3>
       <%= select_tag 'review[user_id]', options_from_collection_for_select(@users, :id, :name), class: 'form-select' %>
       <h3>Image:</h3>
       <input type="text" name="review[image]">
 
     </div>
+
+    <% if flash[:error] %>
+      <p class='error-message'><%= flash[:error] %></p>
+    <% end %>
+
     <input type="submit" id='submit' value='Create Review'>
 
   </form>
