@@ -17,27 +17,44 @@
     </p>
   </div>
 
-  <div class='review-block'>
-    <div class='section-head'>
-      <h3>Highlighted Reviews:</h3>
+  <% if @user.highlighted_reviews %>
+    <div class='review-block'>
+      <div class='section-head'>
+        <h3>Highlighted Reviews:</h3>
+      </div>
+
+      <h3>Best Review:</h3>
+      <div id="hl-review-<%= @user.highlighted_reviews.first.id %>" class='review-section'>
+        <h3><%= @user.highlighted_reviews.first.title %></h3>
+        <p>
+          <%= @user.highlighted_reviews.first.rating %> stars, by <%= @user.highlighted_reviews.first.user.name %>
+        </p>
+        <% if @user.highlighted_reviews.first.image != '' %>
+          <img src="<%= @user.highlighted_reviews.first.image %>" alt="user image for review">
+        <% end %>
+        <p>
+          <%= @user.highlighted_reviews.first.content %>
+        </p>
+      </div>
+
+      <h3>Worst Review:</h3>
+      <div id="hl-review-<%= @user.highlighted_reviews.last.id %>" class='review-section'>
+        <h3><%= @user.highlighted_reviews.last.title %></h3>
+        <p>
+          <%= @user.highlighted_reviews.last.rating %> stars, by <%= @user.highlighted_reviews.last.user.name %>
+        </p>
+        <% if @user.highlighted_reviews.last.image != '' %>
+          <img src="<%= @user.highlighted_reviews.last.image %>" alt="user image for review">
+        <% end %>
+        <p>
+          <%= @user.highlighted_reviews.last.content %>
+        </p>
+      </div>
+
     </div>
-    <% if @user.highlighted_reviews %>
-      <% @user.highlighted_reviews.each do |review| %>
-        <div id="hl-review-<%= review.id %>" class='review-section'>
-          <h3><%= review.title %></h3>
-          <p>
-            <%= review.rating %> stars, by <%= review.user.name %>
-          </p>
-          <% if review.image != '' %>
-            <img src="<%= review.image %>" alt="user image for review">
-          <% end %>
-          <p>
-            <%= review.content %>
-          </p>
-        </div>
-      <% end%>
-    </div>
-    <% end%>
+
+
+  <% end%>
 
 
   <div class='review-block'>
