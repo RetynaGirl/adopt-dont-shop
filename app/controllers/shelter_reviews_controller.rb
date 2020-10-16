@@ -5,7 +5,7 @@ class ShelterReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.create(
+    @review = Review.new(
       title: params[:review][:title],
       rating: params[:review][:rating],
       content: params[:review][:content],
@@ -13,8 +13,14 @@ class ShelterReviewsController < ApplicationController
       shelter_id: params[:review][:shelter_id],
       image: params[:review][:image]
     )
+    if @review.save
 
-    redirect_to "/shelters/#{@review.shelter_id}"
+      redirect_to "/shelters/#{@review.shelter_id}"
+    else
+
+      flash[:error] = 'Please enter data in all required (*) fields'
+      redirect_to "/shelters/#{params[:review][:shelter_id]}/reviews/new"
+    end
   end
 
   def edit
