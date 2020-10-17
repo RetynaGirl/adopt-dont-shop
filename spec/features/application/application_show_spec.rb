@@ -42,6 +42,15 @@ describe 'As a visitor' do
                         description: 'this is a dog',
                         shelter_id: @shelter.id
                       })
+      @pet3 = Pet.create({
+                        name: 'Rascal',
+                        image: 'https://images.dog.ceo/breeds/spaniel-sussex/n02102480_5808.jpg',
+                        age: 3,
+                        sex: 'Male',
+                        adoptable: true,
+                        description: 'this dog has won some medals',
+                        shelter_id: @shelter.id
+                      })
       @application = Application.create({
                         user: @user,
                         description: "I have a great house for a dog",
@@ -67,15 +76,47 @@ describe 'As a visitor' do
         expect(page).to have_link(pet.name)
       end
     end
-    it "I see a search bar that returns a list of pet names similar to my search" do
+  end
+  describe "the pet search can handle a variety of searches" do
+    it "complete name searches" do
       visit "/applications/#{@application.id}"
-      fill_in "search[names]", with: "Ja"
-      click_button("Search Pet Names")
+      fill_in "search", with: "Rascal"
+      click_button("Search")
       within('#pet-search') do
-        expect(page).to have_content("Jack")
+        expect(page).to have_content("Rascal")
       end
-
+    end 
+    it "wild card searches" do
+      visit "/applications/#{@application.id}"
+      fill_in "search", with: "asc"
+      click_button("Search")
+      within('#pet-search') do
+        expect(page).to have_content("Rascal")
+      end
+    end 
+    it "case insensitive searches" do
+      visit "/applications/#{@application.id}"
+      fill_in "search", with: "ra"
+      click_button("Search")
+      within('#pet-search') do
+        expect(page).to have_content("Rascal")
+      end
+    end 
+  end
+  describe 'Next to each pet returned in search there is a button to add them to app' do
+    it 'when clicked, the button adds the pet and returns me to the application show page' do
+      visit "/applications/#{@application.id}"
+      expect(page).to_not have_selector("#application-pet-#{@pet3.id}")
+      fill_in "search", with: "ra"
+      click_button("Search")
+      within("#pet-search-#{@pet3.id}") do
+        expect(page).to have_content("Rascal")
+        click_link("Add to Application")
+      end
+      expect(current_path).to eq("/applications/#{@application.id}")
+      within("#application-pet-#{@pet3.id}") do
+        expect(page).to have_content("Rascal")
+      end
     end
-      
   end
 end
