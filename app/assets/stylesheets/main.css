@@ -179,3 +179,14 @@ a:active {
 textarea {
   display: inline-block;
 }
+
+.search-result-box{
+  display: flex;
+  width: 300px;
+  margin: 5px;
+}
+
+.search-img-box {
+  width: 100%;
+  border: 2px solid black;
+}
