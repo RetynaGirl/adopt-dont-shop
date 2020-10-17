@@ -1,3 +1,5 @@
+
+
 <section>
   <div class='section-head'>
     <h2>Adoption Application</h2>
@@ -22,11 +24,33 @@
 
   </div>
   
+  <div id="pet-search">
+    <%= form_tag  "/applications/#{@application.id}", method: :get do%>
+      <%= label_tag "search pet names:" %>
+      <%= text_field_tag 'search'%>
+      <%= submit_tag 'Search' %>
+    <% end %>
+    <% if @pet_search %>
+      Pets that match search for '<%= @search %>': 
+      <% @pet_search.each do |pet| %>
+        <div id="pet-search-<%= pet.id %>" class='search-result-box'>
+          <div class='search-img-box'>
+            <div style="margin: 2px;"><%= pet.name%></div>
+            <img src="<%= pet.image %>" alt="" style="display: cover; width: 100%;">
+            <div style="margin: 2px;">
+              <%= link_to 'Add to Application', "/applications/#{@application.id}/#{pet.id}", method: :post %>
+            </div>
+          </div>
+        </div>
+      <% end%>
+    <% end%>
+  </div>
+  
   <div>
     <h3>Pets Applied for:</h3>
     <% @pets.each do |pet| %>
     <div id="application-pet-<%= pet.id %>">
-      <%= link_to "#{pet.name}", "/pets/#{pet.id}", class: 'shelter-link'%>
+      <%= link_to "#{pet.name}", "/pets/#{pet.id}", class: 'shelter-link'%> 
     </div>
     <% end%>
   </div>
