@@ -1,0 +1,40 @@
+<section>
+  <div class='section-head'>
+    <h2>Adoption Application</h2>
+
+    <form action="/applications/<%= @application.id %>" method='post'>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Application" class='header-link delete-submit'>
+    </form>
+  </div>
+  <h3>Status: <%= @application.status %></h3>
+
+  <div>
+    <p class='shelter-info'>
+      User: <%= @user.name %><br>
+      <%= @user.address %> <br>
+      <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+      <br>
+      <br>
+      <%= @application.description %>
+    </p>
+
+  </div>
+  
+  <div>
+    <h3>Pets Applied for:</h3>
+    <% @pets.each do |pet| %>
+    <div id="application-pet-<%= pet.id %>">
+      <%= link_to "#{pet.name}", "/pets/#{pet.id}", class: 'shelter-link'%>
+    </div>
+    <% end%>
+  </div>
+
+
+
+  
+
+  
+
+</section>

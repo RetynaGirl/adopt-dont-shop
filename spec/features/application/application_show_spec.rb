@@ -1,11 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-@shelter = Shelter.create(name: 'Bobby',
+require 'rails_helper'
+
+# User Story 15, Application Show Page
+
+# PAIR STORY: It is recommended that you work on this story as a pair. Both partners should understand the data model for applications and how they relate to other models.
+
+# As a visitor
+# When I visit an applications show page "/applications/:id"
+# Then I can see the following:
+# - Name of the User on the Application
+# - Full Address of the User on the Application
+# - Description of why the applicant says they'd be a good home for this pet(s)
+# - names of all pets that this application is for (all names of pets should be links to their show page)
+
+describe 'As a visitor' do
+  before(:each) do
+    @shelter = Shelter.create(name: 'Bobby',
                                 address: '123 halmock st',
                                 city: 'dover',
                                 state: 'florida',
@@ -41,3 +50,22 @@
 
       ApplicationPet.create(application: @application, pet: @pet1)
       ApplicationPet.create(application: @application, pet: @pet2)
+
+  end
+  describe 'when i visit application show page' do
+    it 'I see application user name, address, description, pets user applying for' do
+      visit "/applications/#{@application.id}"
+
+      expect(page).to have_content(@application.user.name)
+      expect(page).to have_content(@application.user.address)
+      expect(page).to have_content(@application.user.city)
+      expect(page).to have_content(@application.user.state)
+      expect(page).to have_content(@application.user.zip)
+      expect(page).to have_content(@application.description)
+      expect(page).to have_content(@application.status)
+      @application.pets.each do |pet|
+        expect(page).to have_link(pet.name)
+      end
+    end
+  end
+end
