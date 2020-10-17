@@ -67,5 +67,15 @@ describe 'As a visitor' do
         expect(page).to have_link(pet.name)
       end
     end
+    it "I see a search bar that returns a list of pet names similar to my search" do
+      visit "/applications/#{@application.id}"
+      fill_in "search[names]", with: "Ja"
+      click_button("Search Pet Names")
+      within('#pet-search') do
+        expect(page).to have_content("Jack")
+      end
+
+    end
+      
   end
 end
