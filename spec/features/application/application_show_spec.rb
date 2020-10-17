@@ -48,9 +48,9 @@ describe 'As a visitor' do
                         status: "In Progress"
       })
 
-      @application.pets << @pet1
-      @application.pets << @pet2
-      
+      ApplicationPet.create(application: @application, pet: @pet1)
+      ApplicationPet.create(application: @application, pet: @pet2)
+
   end
   describe 'when i visit application show page' do
     it 'I see application user name, address, description, pets user applying for' do
@@ -64,11 +64,8 @@ describe 'As a visitor' do
       expect(page).to have_content(@application.description)
       expect(page).to have_content(@application.status)
       @application.pets.each do |pet|
-        expect(page).to have_content()
+        expect(page).to have_link(pet.name)
       end
-
-
-
     end
   end
 end
