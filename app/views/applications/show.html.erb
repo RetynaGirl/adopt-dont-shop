@@ -15,7 +15,7 @@
 
   <%# APPLICATION STATUS %>
 
-  <h3>Status: <%= @application.status %></h3>
+  <h3>Application Status: <%= @application.status %></h3>
 
   <%# APPLICATION USER DETAIL %>
 
@@ -82,8 +82,8 @@
       <h3><div class="required-tag"><%= flash[:reason] %></div></h3>
       <% end%>
       <textarea name="reason" cols="30" rows="10" id='owner-reason'><%= @application.description %></textarea>
-
-      <h3><%= submit_tag "Submit Application" %></h3>
+      <br>
+      <%= submit_tag "Submit Application", class:'search-pet-button' %>
     <% end %>
   <% end%>
 
