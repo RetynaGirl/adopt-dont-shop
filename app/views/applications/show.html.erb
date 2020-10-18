@@ -55,7 +55,7 @@
     <% end%>
   </div>
 
-  <% if @pets.nil? == false %>
+  <% if @pets.size > 0 %>
     <h4><%= label_tag "Why you would make a good owner:" %></h4>
     <textarea name="reason" cols="30" rows="10" id='owner-reason'></textarea>
     <%= button_to "Submit Application", "/applications", method: :post%>
