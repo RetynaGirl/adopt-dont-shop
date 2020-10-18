@@ -17,9 +17,7 @@
       User: <%= @user.name %><br>
       <%= @user.address %> <br>
       <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
-      <br>
-      <br>
-      <%= @application.description %>
+
     </p>
 
   </div>
@@ -56,7 +54,7 @@
   </div>
 
   <% if @pets.size > 0 %>
-    <h4><%= label_tag "Why you would make a good owner:" %></h4>
+    <h4><%= label_tag "Why you would make a good owner:", value=@application.description %></h4>
     <textarea name="reason" cols="30" rows="10" id='owner-reason'></textarea>
     <%= button_to "Submit Application", "/applications", method: :post%>
   <% end%>
