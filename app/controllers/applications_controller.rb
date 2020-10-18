@@ -18,4 +18,8 @@ class ApplicationsController < ApplicationController
     redirect_to "/applications/#{params[:app_id]}"
   end
 
+  def update
+
+  end
+
 end
