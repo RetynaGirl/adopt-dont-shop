@@ -111,7 +111,7 @@ describe 'As a visitor' do
       click_button("Search")
       within("#pet-search-#{@pet3.id}") do
         expect(page).to have_content("Rascal")
-        click_link("Add to Application")
+        click_button("Add to Application")
       end
       expect(current_path).to eq("/applications/#{@application.id}")
       within("#application-pet-#{@pet3.id}") do
@@ -172,7 +172,7 @@ describe 'as a vistor' do
       fill_in "search", with: "ra"
       click_button("Search")
       within("#pet-search-#{@pet3.id}") do
-        click_link("Add to Application")
+        click_button("Add to Application")
       end
       expect(page).to have_selector("#owner-reason")
 
@@ -183,7 +183,7 @@ describe 'as a vistor' do
       fill_in "search", with: "ra"
       click_button("Search")
       within("#pet-search-#{@pet3.id}") do
-        click_link("Add to Application")
+        click_button("Add to Application")
       end
       expect(page).to have_button("Submit Application")
       

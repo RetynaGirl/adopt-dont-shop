@@ -63,6 +63,12 @@ describe 'as a visitor' do
       ApplicationPet.create(application: @application, pet: @pet2)
 
   end
+  describe 'when i visit application show page and have added a pet but no reason' do
+    it 'I can click submit, but am directed to the show page with a warning message that reason is required' do
+      visit "applications/#{@application.id}"
+    end
+  end
+  
   describe 'when i visit an app show page and have added pets and a reason' do
     it 'I can click the submit button which returns me to show page with pending app status' do
       visit "applications/#{@application.id}"

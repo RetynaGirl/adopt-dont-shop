@@ -38,5 +38,4 @@ Rails.application.routes.draw do
   # Applications CRUD
   get '/applications/:id', to: 'applications#show'
   patch '/applications/:id', to: 'applications#update'
-  post '/applications/:app_id/:pet_id', to: 'applications#add_pet'
 end
