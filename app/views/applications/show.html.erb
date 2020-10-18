@@ -71,12 +71,18 @@
   <%# REASON TO ADOPT %>
 
   <% if @pets.size > 0 && @application.status == "In Progress"%>
-    <h4><%= label_tag "Why you would make a good owner:" %></h4>
-    <textarea name="reason" cols="30" rows="10" id='owner-reason'><%= @application.description %></textarea>
+    <%= form_with(url: "/applications/#{@application.id}", method: "patch") do %>
+      
+      <input type="hidden" name="submitted" value=true>
+      
+      <h4><%= label_tag "Why you would make a good owner:" %></h4>
+      <% if flash[:reason] %>
+      <h3><div class="required-tag"><%= flash[:reason] %></div></h3>
+      <% end%>
+      <textarea name="reason" cols="30" rows="10" id='owner-reason'><%= @application.description %></textarea>
 
-    <%# SUBMIT APPLICATION BUTTON %>
-
-    <%= button_to "Submit Application", "/applications/#{@application.id}", method: :patch, params:{submitted: true} %>
+      <h3><%= submit_tag "Submit Application" %></h3>
+    <% end %>
   <% end%>
 
   <% if @application.status == "Pending" %>

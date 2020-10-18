@@ -11,8 +11,12 @@ class ApplicationsController < ApplicationController
   end
 
   def update
-    if params[:submitted]
-      Application.find(params[:id]).update(status: "Pending")
+    if params[:submitted]=='true' && params[:reason] != ""
+      Application.find(params[:id]).update(status: "Pending", description: params[:reason])
+    end
+
+    if params[:submitted]=='true' && params[:reason] == ""
+      flash[:reason] = "A reason for adoption is required before submission"
     end
 
     if params[:add_pet]
