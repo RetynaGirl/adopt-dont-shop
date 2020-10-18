@@ -179,7 +179,6 @@ describe 'as a vistor' do
     end
     it 'I can submit an application only when I add a pet to the application' do
       visit "/applications/#{@application.id}"
-      save_and_open_page
       expect(page).to_not have_button('Submit')
       fill_in "search", with: "ra"
       click_button("Search")
