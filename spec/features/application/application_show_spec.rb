@@ -120,3 +120,64 @@ describe 'As a visitor' do
     end
   end
 end
+
+describe 'as a vistor' do
+  describe 'when I fill out an application' do
+    it 'I can submit an application only when I add a pet to the application' do
+      @shelter = Shelter.create(name: 'Bobby',
+                                address: '123 halmock st',
+                                city: 'dover',
+                                state: 'florida',
+                                zip: '12345')
+      @user = User.create(name: 'Jake',
+                          address: '1234 1st St',
+                          city: 'Denver',
+                          state: 'CO',
+                          zip: '80213')
+      @pet1 = Pet.create({
+                        name: 'Jack',
+                        image: 'https://images.dog.ceo/breeds/affenpinscher/n02110627_13014.jpg',
+                        age: 4,
+                        sex: 'Male',
+                        adoptable: true,
+                        description: 'small black dog',
+                        shelter_id: @shelter.id
+                      })
+      @pet2 = Pet.create({
+                        name: 'Charles',
+                        image: 'https://images.dog.ceo/breeds/terrier-norwich/n02094258_230.jpg',
+                        age: 2,
+                        sex: 'Male',
+                        adoptable: true,
+                        description: 'this is a dog',
+                        shelter_id: @shelter.id
+                      })
+      @pet3 = Pet.create({
+                        name: 'Rascal',
+                        image: 'https://images.dog.ceo/breeds/spaniel-sussex/n02102480_5808.jpg',
+                        age: 3,
+                        sex: 'Male',
+                        adoptable: true,
+                        description: 'this dog has won some medals',
+                        shelter_id: @shelter.id
+                      })
+      @application = Application.create({
+                        user: @user,
+                        description: "I have a great house for a dog",
+                        status: "In Progress"})
+
+      visit "/applications/#{@application.id}"
+      expect(page).to_not have_content('Submit')
+      fill_in "search", with: "ra"
+      click_button("Search")
+      within("#pet-search-#{@pet3.id}") do
+        click_link("Add to Application")
+      end
+      expect(page).to have_button("Submit Application")
+      
+    end
+  end
+end
+
+
+
