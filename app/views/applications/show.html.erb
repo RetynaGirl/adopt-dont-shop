@@ -55,7 +55,9 @@
     <% end%>
   </div>
 
-
+  <% if @application.pets %>
+    <%= button_to "Submit Application", "/applications", method: :post%>
+  <% end%>
 
   
 
