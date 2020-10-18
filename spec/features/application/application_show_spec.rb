@@ -188,6 +188,21 @@ describe 'as a vistor' do
       expect(page).to have_button("Submit Application")
       
     end
+    it 'I can add a pet to an application more than once' do
+      visit "/applications/#{@application.id}"
+      fill_in "search", with: "ra"
+      click_button("Search")
+      within("#pet-search-#{@pet3.id}") do
+        click_button("Add to Application")
+      end
+      expect(@application.pets.size).to eq(1)
+      fill_in "search", with: "ra"
+      click_button("Search")
+      within("#pet-search-#{@pet3.id}") do
+        click_button("Add to Application")
+      end
+      expect(@application.pets.size).to eq(1)
+    end
   end
 end
 
