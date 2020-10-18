@@ -67,7 +67,7 @@ describe 'as a visitor' do
     it 'I can click the submit button to update the application which returns me to the show page' do
       visit "applications/#{@application.id}"
       click_button("Submit Application")
-      expect(current_path).to eq("applications/#{@application.id}")
+      expect(current_path).to eq("/applications/#{@application.id}")
     end
     it "when submitted, the status is changed to status pending'" do
 
