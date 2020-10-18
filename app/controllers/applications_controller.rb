@@ -19,7 +19,11 @@ class ApplicationsController < ApplicationController
   end
 
   def update
+    if params[:submitted]
+      Application.find(params[:id]).update(status: "Pending")
+    end
 
+    redirect_to "/applications/#{params[:id]}"
   end
 
 end

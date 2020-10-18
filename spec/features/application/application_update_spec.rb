@@ -64,16 +64,19 @@ describe 'as a visitor' do
 
   end
   describe 'when i visit an app show page and have added pets and a reason' do
-    it 'I can click the submit button to update the application which returns me to the show page' do
+    it 'I can click the submit button which returns me to show page with pending app status' do
       visit "applications/#{@application.id}"
       click_button("Submit Application")
       expect(current_path).to eq("/applications/#{@application.id}")
+      expect(page).to have_content("Pending")
     end
-    it "when submitted, the status is changed to status pending'" do
 
-    end
     it "when submitted, I don't see a section to add more pets on the show page" do
-
+      visit "applications/#{@application.id}"
+      expect(page).to have_selector("#pet-search")
+      click_button("Submit Application")
+      expect(current_path).to eq("/applications/#{@application.id}")
+      expect(page).to_not have_selector("#pet-search")
     end
   end
 end

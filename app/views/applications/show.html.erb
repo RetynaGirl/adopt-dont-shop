@@ -22,27 +22,29 @@
 
   </div>
   
-  <div id="pet-search">
-    <%= form_tag  "/applications/#{@application.id}", method: :get do%>
-      <%= label_tag "search pet names:" %>
-      <%= text_field_tag 'search'%>
-      <%= submit_tag 'Search' %>
-    <% end %>
-    <% if @pet_search %>
-      Pets that match search for '<%= @search %>': 
-      <% @pet_search.each do |pet| %>
-        <div id="pet-search-<%= pet.id %>" class='search-result-box'>
-          <div class='search-img-box'>
-            <div style="margin: 2px;"><%= pet.name%></div>
-            <img src="<%= pet.image %>" alt="" style="display: cover; width: 100%;">
-            <div style="margin: 2px;">
-              <%= link_to 'Add to Application', "/applications/#{@application.id}/#{pet.id}", method: :post %>
+  <% if @application.status == "In Progress"%>
+    <section id="pet-search">
+      <%= form_tag  "/applications/#{@application.id}", method: :get do%>
+        <%= label_tag "search pet names:" %>
+        <%= text_field_tag 'search'%>
+        <%= submit_tag 'Search' %>
+      <% end %>
+      <% if @pet_search %>
+        Pets that match search for '<%= @search %>': 
+        <% @pet_search.each do |pet| %>
+          <div id="pet-search-<%= pet.id %>" class='search-result-box'>
+            <div class='search-img-box'>
+              <div style="margin: 2px;"><%= pet.name%></div>
+              <img src="<%= pet.image %>" alt="" style="display: cover; width: 100%;">
+              <div style="margin: 2px;">
+                <%= link_to 'Add to Application', "/applications/#{@application.id}/#{pet.id}", method: :post %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end%>
       <% end%>
-    <% end%>
-  </div>
+    </section>
+  <% end%>
   
   <div>
     <h3>Pets Applied for:</h3>
@@ -56,7 +58,8 @@
   <% if @pets.size > 0 %>
     <h4><%= label_tag "Why you would make a good owner:" %></h4>
     <textarea name="reason" cols="30" rows="10" id='owner-reason'><%= @application.description %></textarea>
-    <%= button_to "Submit Application", "/applications/#{@application.id}", method: :patch%>
+
+    <%= button_to "Submit Application", "/applications/#{@application.id}", method: :patch, params:{submitted: true} %>
   <% end%>
 
   
