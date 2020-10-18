@@ -36,7 +36,7 @@
       <%= form_tag  "/applications/#{@application.id}", method: :get do%>
         <%= label_tag "search pet names:" %>
         <%= text_field_tag 'search'%>
-        <%= submit_tag 'Search' %>
+        <%= submit_tag 'Search', class:"search-pet-button" %>
       <% end %>
 
       <%# SEARCH RESULTS %>
@@ -45,10 +45,10 @@
         <% @pet_search.each do |pet| %>
           <div id="pet-search-<%= pet.id %>" class='search-result-box'>
             <div class='search-img-box'>
-              <div style="margin: 2px;"><%= pet.name%></div>
+              <div class="search-pet-name"><%= pet.name%></div>
               <img src="<%= pet.image %>" alt="" style="display: cover; width: 100%;">
               <div style="margin: 2px;">
-                <%= button_to 'Add to Application', "/applications/#{@application.id}", method: :patch, params:{add_pet: true, pet_id:pet.id} %>
+                <%= button_to 'Add to Application', "/applications/#{@application.id}", method: :patch, params:{add_pet: true, pet_id:pet.id}, class:'shelter-action-button' %>
               </div>
             </div>
           </div>
@@ -70,6 +70,8 @@
 
   <%# REASON TO ADOPT %>
 
+  <%# If Submission 'in progress' display: %>
+
   <% if @pets.size > 0 && @application.status == "In Progress"%>
     <%= form_with(url: "/applications/#{@application.id}", method: "patch") do %>
       
@@ -84,6 +86,8 @@
       <h3><%= submit_tag "Submit Application" %></h3>
     <% end %>
   <% end%>
+
+  <%# If Submission 'pending' display: %>
 
   <% if @application.status == "Pending" %>
     <h4><%= label_tag "Why you would make a good owner:" %></h4>
