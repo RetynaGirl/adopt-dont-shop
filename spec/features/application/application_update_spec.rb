@@ -61,11 +61,21 @@ describe 'as a visitor' do
 
       ApplicationPet.create(application: @application, pet: @pet1)
       ApplicationPet.create(application: @application, pet: @pet2)
+      
+    end
+    describe 'when i visit application show page and have added a pet but no reason' do
+      it 'I can click submit, but am directed to the show page with a warning message that reason is required' do
+        
+        @application2 = Application.create({user: @user, status: "In Progress"})
+        ApplicationPet.create(application: @application2, pet: @pet1)
 
-  end
-  describe 'when i visit application show page and have added a pet but no reason' do
-    it 'I can click submit, but am directed to the show page with a warning message that reason is required' do
-      visit "applications/#{@application.id}"
+        visit "/applications/#{@application2.id}"
+
+        click_button "Submit Application"
+        expect(current_path).to eq("/applications/#{@application2.id}")
+        expect(@application2.status).to eq("In Progress")
+        expect(page).to have_content("A reason for adoption is required before submission")
+
     end
   end
   
