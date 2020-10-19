@@ -21,9 +21,9 @@
 
   <div>
     <p class='shelter-info'>
-      User: <%= @user.name %><br>
-      <%= @user.address %> <br>
-      <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+      User: <%= @application.user.name %><br>
+      <%= @application.user.address %> <br>
+      <%= @application.user.city %>, <%= @application.user.state %> <%= @application.user.zip %>
 
     </p>
 
@@ -61,7 +61,7 @@
   <%# PETS ON APPLICATION %>
   <div>
     <h3>Pets Applied for:</h3>
-    <% @pets.each do |pet| %>
+    <% @application.pets.each do |pet| %>
     <div id="application-pet-<%= pet.id %>">
       <%= link_to "#{pet.name}", "/pets/#{pet.id}", class: 'shelter-link'%> 
     </div>
@@ -72,7 +72,7 @@
 
   <%# If Submission 'in progress' display: %>
 
-  <% if @pets.size > 0 && @application.status == "In Progress"%>
+  <% if @application.pets.size > 0 && @application.status == "In Progress"%>
     <%= form_with(url: "/applications/#{@application.id}", method: "patch") do %>
       
       <input type="hidden" name="submitted" value=true>
