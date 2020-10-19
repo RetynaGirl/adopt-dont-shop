@@ -1,6 +1,10 @@
+
+
 <section>
   <div class='section-head'>
     <h2>Adoption Application</h2>
+
+<%# BUTTON TO DELETE APPLICATION %>
 
     <form action="/applications/<%= @application.id %>" method='post'>
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -8,30 +12,87 @@
       <input type="submit" value="Delete Application" class='header-link delete-submit'>
     </form>
   </div>
-  <h3>Status: <%= @application.status %></h3>
+
+  <%# APPLICATION STATUS %>
+
+  <h3>Application Status: <%= @application.status %></h3>
+
+  <%# APPLICATION USER DETAIL %>
 
   <div>
     <p class='shelter-info'>
-      User: <%= @user.name %><br>
-      <%= @user.address %> <br>
-      <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
-      <br>
-      <br>
-      <%= @application.description %>
+      User: <%= @application.user.name %><br>
+      <%= @application.user.address %> <br>
+      <%= @application.user.city %>, <%= @application.user.state %> <%= @application.user.zip %>
+
     </p>
 
   </div>
+
+  <%# PET SEARCH %>
+
+  <% if @application.status == "In Progress"%>
+    <section id="pet-search">
+      <%= form_tag  "/applications/#{@application.id}", method: :get do%>
+        <%= label_tag "search pet names:" %>
+        <%= text_field_tag 'search'%>
+        <%= submit_tag 'Search', class:"search-pet-button" %>
+      <% end %>
+
+      <%# SEARCH RESULTS %>
+      <% if @pet_search %>
+        Pets that match search for '<%= @search %>'
+        <% @pet_search.each do |pet| %>
+          <div id="pet-search-<%= pet.id %>" class='search-result-box'>
+            <div class='search-img-box'>
+              <div class="search-pet-name"><%= pet.name%></div>
+              <img src="<%= pet.image %>" alt="" style="display: cover; width: 100%;">
+              <div style="margin: 2px;">
+                <%= button_to 'Add to Application', "/applications/#{@application.id}", method: :patch, params:{add_pet: true, pet_id:pet.id}, class:'shelter-action-button' %>
+              </div>
+            </div>
+          </div>
+        <% end%>
+      <% end%>
+
+    </section>
+  <% end%>
   
+  <%# PETS ON APPLICATION %>
   <div>
     <h3>Pets Applied for:</h3>
-    <% @pets.each do |pet| %>
+    <% @application.pets.each do |pet| %>
     <div id="application-pet-<%= pet.id %>">
-      <%= link_to "#{pet.name}", "/pets/#{pet.id}", class: 'shelter-link'%>
+      <%= link_to "#{pet.name}", "/pets/#{pet.id}", class: 'shelter-link'%> 
     </div>
     <% end%>
   </div>
 
+  <%# REASON TO ADOPT %>
 
+  <%# If Submission 'in progress' display: %>
+
+  <% if @application.pets.size > 0 && @application.status == "In Progress"%>
+    <%= form_with(url: "/applications/#{@application.id}", method: "patch") do %>
+      
+      <input type="hidden" name="submitted" value=true>
+      
+      <h4><%= label_tag "Why you would make a good owner:" %></h4>
+      <% if flash[:reason] %>
+      <h3><div class="required-tag"><%= flash[:reason] %></div></h3>
+      <% end%>
+      <textarea name="reason" cols="30" rows="10" id='owner-reason'><%= @application.description %></textarea>
+      <br>
+      <%= submit_tag "Submit Application", class:'search-pet-button' %>
+    <% end %>
+  <% end%>
+
+  <%# If Submission 'pending' display: %>
+
+  <% if @application.status == "Pending" %>
+    <h4><%= label_tag "Why you would make a good owner:" %></h4>
+    <p><%= @application.description %></p>
+  <% end%>
 
   
 
