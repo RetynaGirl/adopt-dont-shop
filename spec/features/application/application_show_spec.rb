@@ -85,7 +85,7 @@ describe 'As a visitor' do
       within('#pet-search') do
         expect(page).to have_content("Rascal")
       end
-    end 
+    end
     it "wild card searches" do
       visit "/applications/#{@application.id}"
       fill_in "search", with: "asc"
@@ -93,7 +93,7 @@ describe 'As a visitor' do
       within('#pet-search') do
         expect(page).to have_content("Rascal")
       end
-    end 
+    end
     it "case insensitive searches" do
       visit "/applications/#{@application.id}"
       fill_in "search", with: "ra"
@@ -101,7 +101,7 @@ describe 'As a visitor' do
       within('#pet-search') do
         expect(page).to have_content("Rascal")
       end
-    end 
+    end
   end
   describe 'Next to each pet returned in search there is a button to add them to app' do
     it 'when clicked, the button adds the pet and returns me to the application show page' do
@@ -186,7 +186,7 @@ describe 'as a vistor' do
         click_button("Add to Application")
       end
       expect(page).to have_button("Submit Application")
-      
+
     end
     it 'I can add a pet to an application more than once' do
       visit "/applications/#{@application.id}"
@@ -196,15 +196,7 @@ describe 'as a vistor' do
         click_button("Add to Application")
       end
       expect(@application.pets.size).to eq(1)
-      fill_in "search", with: "ra"
-      click_button("Search")
-      within("#pet-search-#{@pet3.id}") do
-        click_button("Add to Application")
-      end
-      expect(@application.pets.size).to eq(1)
+
     end
   end
 end
-
-
-
