@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   delete '/reviews/:id', to: 'shelter_reviews#delete'
 
   # Applications CRUD
+  get '/applications/new', to: 'applications#new'
+  post '/applications', to: 'applications#create'
   get '/applications/:id', to: 'applications#show'
   patch '/applications/:id', to: 'applications#update'
 

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :reviews
+  has_many :applications
 
   def review_average
     reviews.average(:rating)
