@@ -2,13 +2,7 @@
   <div class='section-head'>
     <h2><%= @shelter.name.split.map(&:capitalize).join(' ') %></h2>
     <a href="/shelters/<%= @shelter.id %>/pets" class='header-link'>Pets</a>
-    <a href="/shelters/<%= @shelter.id %>/edit" class='header-link'>Update Shelter</a>
-
-    <form action="/shelters/<%= @shelter.id %>" method='post'>
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete Shelter" class='header-link delete-submit'>
-    </form>
+    <%= render "shared/interaction_form", locals: {link: "/shelters/#{@shelter.id}"} %>
   </div>
 
   <div>
@@ -27,9 +21,7 @@
       <div id='review-<%= review.id %>' class='review-section'>
         <div class='section-head'>
           <h3><%= review.title %></h3>
-          <a href="/reviews/<%= review.id %>/edit" class='header-link'>Update</a>
-          <%= button_to "Delete", "/reviews/#{review.id}", method: 'delete', data: {confirm: "Are you sure you want to delete this review?"}, class: "header-link delete-submit"%>
-        </div>
+          <%= render "shared/interaction_form", locals: {link: "/reviews/#{review.id}"} %>
         <p>
           <%= review.rating %> stars, by <%= review.user.name %>
         </p>

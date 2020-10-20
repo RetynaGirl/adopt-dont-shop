@@ -21,7 +21,7 @@ describe 'As a visitor' do
 
       visit "/shelters/#{shelter.id}"
 
-      expect(page).to have_button('Delete Shelter')
+      expect(page).to have_button('Delete')
     end
   end
 
@@ -35,7 +35,7 @@ describe 'As a visitor' do
 
       visit "/shelters/#{shelter.id}"
 
-      click_on('Delete Shelter')
+      click_on('Delete')
 
       expect(page).to have_link('New Shelter')
 

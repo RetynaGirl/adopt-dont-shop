@@ -1,0 +1,7 @@
+
+<a href="<%= locals[:link] %>/edit" class='shelter-action-link'>Update</a>
+          <form action=<%= locals[:link] %> method='post' class='inline-form'>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete" class='shelter-action-button'>
+          </form>
