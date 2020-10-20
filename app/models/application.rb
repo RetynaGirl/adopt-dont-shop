@@ -9,8 +9,8 @@ class Application < ApplicationRecord
     ApplicationPet.where('pet_id = ? AND application_id = ?', pet.id, id).first.status
   end
 
-  def pet_approvals
-    return :approved if pets.pluck(:status).all? {|pet_status| pet_status == "Approved"}
-    return :rejected if pets.pluck(:status).any? {|pet_status| pet_status == "Rejected"}
+  def all_pets_approved
+    #pets.where.not(status: 'Approved').nil?
+    application_pets.pluck(:status).all? {|pet_status| pet_status == "Approved"}
   end
 end
