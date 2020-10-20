@@ -32,3 +32,19 @@ input {
 .heading-statistic {
   margin: 5px;
 }
+
+.approval-tag {
+  color: #00ffee;
+  width: fit-content;
+  padding: 2px;
+  margin: 5px;
+  background: green;
+}
+
+.rejection-tag {
+  color: #00ffee;
+  background: red;
+  width: fit-content;
+  padding: 2px;
+  margin: 5px;
+}

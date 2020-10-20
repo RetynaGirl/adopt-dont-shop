@@ -38,4 +38,8 @@ Rails.application.routes.draw do
   # Applications CRUD
   get '/applications/:id', to: 'applications#show'
   patch '/applications/:id', to: 'applications#update'
+
+  # Admin Application Interface
+  get '/admin/applications/:id', to: 'adminapps#show'
+  patch '/admin/applications/:app_id/pets/:pet_id', to: 'adminapps#pet_update'
 end

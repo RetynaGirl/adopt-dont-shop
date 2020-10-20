@@ -7,7 +7,13 @@ class ApplicationsController < ApplicationController
       @search = params[:search]
       # pets_on_app = @application.pets.pluck(:pet_id)
       # @pet_search = Pet.where("lower(name) like ? ", "%#{params[:search].downcase}%")
-      @pet_search = Pet.where("pets.id NOT IN (SELECT pet_intersect.id FROM pets, application_pets JOIN pets AS pet_intersect ON pet_intersect.id = application_pets.pet_id WHERE application_pets.application_id = #{@application.id} GROUP BY pet_intersect.id)").where("lower(name) like ? ", "%#{params[:search].downcase}%")
+      @pet_search = Pet.where("pets.id NOT IN (SELECT pet_intersect.id
+                                               FROM pets, application_pets
+                                               JOIN pets AS pet_intersect ON pet_intersect.id = application_pets.pet_id
+                                               WHERE application_pets.application_id = #{@application.id}
+                                               GROUP BY pet_intersect.id)")
+                       .where("lower(name) like ? ", "%#{params[:search].downcase}%")
+
     end
   end
 
