@@ -70,16 +70,16 @@ describe Application, type: :model do
 
       expect(@application.pet_status(@pet2)).to eq('Approved')
     end
-    it '#all_pets_approved' do
+    it '#approved?' do
      
       app1_pet1 = ApplicationPet.create(application: @application, pet: @pet1)
       app1_pet2 = ApplicationPet.create(application: @application, pet: @pet2, status: 'Approved')
       
-      expect(@application.all_pets_approved).to eq(false)
+      expect(@application.approved?).to eq(false)
       
       app1_pet1 = ApplicationPet.update(status: 'Approved')
       
-      expect(@application.all_pets_approved).to eq(true)
+      expect(@application.approved?).to eq(true)
       
     end
   end

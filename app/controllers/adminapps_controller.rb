@@ -9,7 +9,7 @@ class AdminappsController < ApplicationController
     case params[:todo]
     when 'approve'
       @app_pet.update(status: 'Approved')
-      application.update(status: "Approved") if application.all_pets_approved
+      application.update(status: "Approved") if application.approved?
     when 'reject'
       @app_pet.update(status: 'Rejected')
       application.update(status: "Rejected")
