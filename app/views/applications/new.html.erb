@@ -1,0 +1,24 @@
+<section>
+  <div class='section-head'>
+    <h2>New Application:</h2>
+  </div>
+
+  <form action="/applications" method="post">
+    <input type="hidden" name="authenticity_token" value='<%= form_authenticity_token %>'>
+
+    <div class='form-block'>
+      <div class='form-column'>
+        <h3>Your Name:</h3>
+
+      </div>
+
+      <div class='form-column'>
+        <%= select_tag 'application[user]', options_from_collection_for_select(@users, :id, :name), class: 'form-select' %>
+
+      </div>
+
+    </div>
+    <input type="submit" id='submit' value='Submit'>
+
+  </form>
+</section>
