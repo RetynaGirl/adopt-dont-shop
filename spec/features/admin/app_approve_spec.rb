@@ -62,14 +62,15 @@ describe 'As a visitor' do
   describe "When I visit an admin application show page" do
     it "And I approve all pets on an application the the admin app show page changes status approved" do
       visit "/admin/applications/#{@application.id}"
-      within ("#application-pet-#{@application.pets.first.id}") do
+      within ("#application-pet-#{@pet1.id}") do
         click_button('Approve Pet')
       end
       expect(page).to have_content("Application Status: Pending")
       
-      within ("#application-pet-#{@application.pets.last.id}") do
+      within ("#application-pet-#{@pet2.id}") do
         click_button('Approve Pet')
       end
+
       expect(page).to have_content("Application Status: Approved")
 
     end
