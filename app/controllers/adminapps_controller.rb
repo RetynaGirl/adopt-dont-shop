@@ -5,10 +5,11 @@ class AdminappsController < ApplicationController
 
   def pet_update
     @app_pet = ApplicationPet.where('pet_id = ? AND application_id = ?', params[:pet_id], params[:app_id]).first
-
+    application = Application.find(params[:app_id])
     case params[:todo]
     when 'approve'
       @app_pet.status = 'Approved'
+      application.update(status: "Approved") if application.pets_approval
     when 'reject'
       @app_pet.status = 'Rejected'
     end
