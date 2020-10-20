@@ -31,28 +31,31 @@
   <h3>Pets Applied for:</h3>
   <div class='box-grid'>
     <% @application.pets.each do |pet| %>
+      <%# for each pet, check all approved applications and whether pet is on any of those applications via application_pet %>
       <div id="application-pet-<%= pet.id %>" class='box-grid-element'>
         <%= link_to "#{pet.name}", "/pets/#{pet.id}", class: 'shelter-link'%>
         <% case @application.pet_status(pet) %>
         <% when nil %>
-        <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/pets/#{pet.id}", method: :patch, params: {todo: :approve}, class: 'header-link' %>
-        <%= button_to "Reject Pet", "/admin/applications/#{@application.id}/pets/#{pet.id}", method: :patch, params: {todo: :reject}, class: 'header-link' %>
+          <%= button_to "Approve Pet", "/admin/applications/#{@application.id}/pets/#{pet.id}", method: :patch, params: {todo: :approve}, class: 'header-link' %>
+          <%= button_to "Reject Pet", "/admin/applications/#{@application.id}/pets/#{pet.id}", method: :patch, params: {todo: :reject}, class: 'header-link' %>
         <% when 'Approved' %>
-        <p class='approval-tag'>Approved!</p>
-        <% when 'Rejected' %>
-        <p class='rejection-tag'>Rejected!</p>
-      <% end %>
-    </div>
+          <p class='approval-tag'>Approved!</p>
+        <% when 'Rejected' %> 
+          <p class='rejection-tag'>Rejected!</p>
+        <% when 'Approved elsewhere'%>
+          <p class='elsewhere-tag'>Pet has been approved on another application</p>
+        <% end %>
+      </div>
+    <% end%>
+  </div>
+
+  <%# REASON TO ADOPT %>
+
+  <%# If Submission 'pending' display: %>
+
+  <% if @application.status == "Pending" %>
+    <h4><%= label_tag "Why you would make a good owner:" %></h4>
+    <p><%= @application.description %></p>
   <% end%>
-</div>
-
-<%# REASON TO ADOPT %>
-
-<%# If Submission 'pending' display: %>
-
-<% if @application.status == "Pending" %>
-  <h4><%= label_tag "Why you would make a good owner:" %></h4>
-  <p><%= @application.description %></p>
-<% end%>
 
 </section>

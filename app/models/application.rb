@@ -6,7 +6,20 @@ class Application < ApplicationRecord
   has_many :pets, through: :application_pets
 
   def pet_status(pet)
-    ApplicationPet.where('pet_id = ? AND application_id = ?', pet.id, id).first.status
+    pet_applications = pet.application_pets.where('status = "Approved"')
+    if !pet_applications.nil?
+      require pry; binding pry
+      case pet_applications.first.id
+      when nil
+        ApplicationPet.where('pet_id = ? AND application_id = ?', pet.id, id).first.status
+      when id
+        "Approved"
+      else
+        "Approved elsewhere"
+      end
+    else
+      ApplicationPet.where('pet_id = ? AND application_id = ?', pet.id, id).first.status
+    end
   end
 
   def approved?
