@@ -10,7 +10,8 @@ class Application < ApplicationRecord
   end
 
   def all_pets_approved
-    #pets.where.not(status: 'Approved').nil?
+    
+    #application_pets.where.not(status: 'Approved').empty?
     application_pets.pluck(:status).all? {|pet_status| pet_status == "Approved"}
   end
 end

@@ -78,6 +78,7 @@ describe Application, type: :model do
       expect(@application.all_pets_approved).to eq(false)
       
       app1_pet1 = ApplicationPet.update(status: 'Approved')
+      
       expect(@application.all_pets_approved).to eq(true)
       
     end

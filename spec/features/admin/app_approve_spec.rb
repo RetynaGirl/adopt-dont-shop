@@ -74,5 +74,12 @@ describe 'As a visitor' do
       expect(page).to have_content("Application Status: Approved")
 
     end
+    it "And I reject a pet on an application the the admin app show page changes status rejected" do
+      visit "/admin/applications/#{@application.id}"
+      within ("#application-pet-#{@pet1.id}") do
+        click_button('Reject Pet')
+      end
+      expect(page).to have_content("Application Status: Rejected")
+    end
   end
 end
