@@ -108,7 +108,7 @@ describe 'As a visitor' do
       expect(page).to have_content("Application Status: Approved")
       visit "/admin/applications/#{@application.id}"
       within ("#application-pet-#{@pet1.id}") do
-        expect(page).to have_content ("Pet has been approved on another application")
+        expect(page).to_not have_content ("Pet has been approved on another application")
       end  
     end
   end
