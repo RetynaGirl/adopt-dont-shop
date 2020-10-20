@@ -40,7 +40,7 @@
           <%= button_to "Reject Pet", "/admin/applications/#{@application.id}/pets/#{pet.id}", method: :patch, params: {todo: :reject}, class: 'header-link' %>
         <% when 'Approved' %>
           <p class='approval-tag'>Approved!</p>
-        <% when 'Rejected' %> 
+        <% when 'Rejected' %>
           <p class='rejection-tag'>Rejected!</p>
         <% when 'Approved elsewhere'%>
           <p class='elsewhere-tag'>Pet has been approved on another application</p>

@@ -80,6 +80,7 @@ describe 'As a visitor' do
       expect(page).to have_current_path("/admin/applications/#{@application.id}")
 
       within("#application-pet-#{@pet1.id}") do
+
         expect(page).to_not have_button('Approve Pet')
         expect(page).to have_content('Approved!')
       end

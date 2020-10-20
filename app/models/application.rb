@@ -6,16 +6,16 @@ class Application < ApplicationRecord
   has_many :pets, through: :application_pets
 
   def pet_status(pet)
-    pet_applications = pet.application_pets.where('status = "Approved"')
-    if !pet_applications.nil?
-      require pry; binding pry
-      case pet_applications.first.id
+    pet_applications = pet.application_pets.where('status = ?', 'Approved')
+    if !pet_applications.empty?
+
+      case pet_applications.first.application.id
       when nil
         ApplicationPet.where('pet_id = ? AND application_id = ?', pet.id, id).first.status
       when id
-        "Approved"
+        'Approved'
       else
-        "Approved elsewhere"
+        'Approved elsewhere'
       end
     else
       ApplicationPet.where('pet_id = ? AND application_id = ?', pet.id, id).first.status
@@ -23,8 +23,7 @@ class Application < ApplicationRecord
   end
 
   def approved?
-    
-    #application_pets.where.not(status: 'Approved').empty?
-    application_pets.pluck(:status).all? {|pet_status| pet_status == "Approved"}
+    # application_pets.where.not(status: 'Approved').empty?
+    application_pets.pluck(:status).all? { |pet_status| pet_status == 'Approved' }
   end
 end

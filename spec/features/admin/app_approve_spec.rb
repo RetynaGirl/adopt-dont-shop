@@ -21,10 +21,10 @@ describe 'As a visitor' do
                         state: 'CO',
                         zip: '80213')
     @user2 = User.create(name: 'Sally Holmes',
-                        address: '283 North St',
-                        city: 'Englewood',
-                        state: 'CO',
-                        zip: '80111')
+                         address: '283 North St',
+                         city: 'Englewood',
+                         state: 'CO',
+                         zip: '80111')
     @pet1 = Pet.create({
                          name: 'Jack',
                          image: 'https://images.dog.ceo/breeds/affenpinscher/n02110627_13014.jpg',
@@ -58,58 +58,57 @@ describe 'As a visitor' do
                                         status: 'Pending'
                                       })
 
-    
-
     @app1_pet1 = ApplicationPet.create(application: @application, pet: @pet1)
     @app1_pet2 = ApplicationPet.create(application: @application, pet: @pet2)
-  
   end
-  describe "When I visit an admin application show page" do
-    it "And I approve all pets on an application the the admin app show page changes status approved" do
+  describe 'When I visit an admin application show page' do
+    it 'And I approve all pets on an application the the admin app show page changes status approved' do
       visit "/admin/applications/#{@application.id}"
-      within ("#application-pet-#{@pet1.id}") do
+      within("#application-pet-#{@pet1.id}") do
         click_button('Approve Pet')
       end
-      expect(page).to have_content("Application Status: Pending")
-      
-      within ("#application-pet-#{@pet2.id}") do
+      expect(page).to have_content('Application Status: Pending')
+
+      within("#application-pet-#{@pet2.id}") do
         click_button('Approve Pet')
       end
 
-      expect(page).to have_content("Application Status: Approved")
-
+      expect(page).to have_content('Application Status: Approved')
     end
-    it "And I reject a pet on an application the the admin app show page changes status rejected" do
+    it 'And I reject a pet on an application the the admin app show page changes status rejected' do
       visit "/admin/applications/#{@application.id}"
-      within ("#application-pet-#{@pet1.id}") do
+      within("#application-pet-#{@pet1.id}") do
         click_button('Reject Pet')
       end
-      expect(page).to have_content("Application Status: Rejected")
+      expect(page).to have_content('Application Status: Rejected')
     end
     it "And a pet application has been approved, all other applications with that pet say 'pet has already been approved for adoption" do
+      @application2 = Application.create({
+                                           user: @user2,
+                                           description: "I'm the best at dogs",
+                                           status: 'Pending'
+                                         })
 
-      @app1_pet1.update(status: "Approved")
-      
-
-      @application2= Application.create({
-                                        user: @user2,
-                                        description: "I'm the best at dogs",
-                                        status: 'Pending'
-                                      })
-      
       ApplicationPet.create(application: @application2, pet: @pet1)
-      
+
       visit "/admin/applications/#{@application2.id}"
-      expect(page).to_not have_content ("Pet has been approved on another application")
+      expect(page).to_not have_content 'Pet has been approved on another application'
       visit "/admin/applications/#{@application.id}"
-      within ("#application-pet-#{@pet2.id}") do
+      within("#application-pet-#{@pet1.id}") do
         click_button('Approve Pet')
       end
-      expect(page).to have_content("Application Status: Approved")
       visit "/admin/applications/#{@application.id}"
-      within ("#application-pet-#{@pet1.id}") do
-        expect(page).to_not have_content ("Pet has been approved on another application")
-      end  
+      within("#application-pet-#{@pet2.id}") do
+        click_button('Approve Pet')
+      end
+
+      expect(page).to have_content('Application Status: Approved')
+      visit "/admin/applications/#{@application.id}"
+      within("#application-pet-#{@pet1.id}") do
+        expect(page).to have_content 'Approved!'
+      end
+        visit "/admin/applications/#{@application2.id}"
+      expect(page).to have_content 'Pet has been approved on another application'
     end
   end
 end
