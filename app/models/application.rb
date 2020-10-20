@@ -8,4 +8,10 @@ class Application < ApplicationRecord
   def pet_status(pet)
     ApplicationPet.where('pet_id = ? AND application_id = ?', pet.id, id).first.status
   end
+
+  def approved?
+    
+    #application_pets.where.not(status: 'Approved').empty?
+    application_pets.pluck(:status).all? {|pet_status| pet_status == "Approved"}
+  end
 end
