@@ -17,7 +17,7 @@ describe Application, type: :model do
   end
 
   describe 'instance methods' do
-    it '#pet_status' do
+    before(:each) do
       @shelter = Shelter.create(name: 'Bobby',
                                 address: '123 halmock st',
                                 city: 'dover',
@@ -60,13 +60,28 @@ describe Application, type: :model do
                                           description: 'I have a great house for a dog',
                                           status: 'In Progress'
                                         })
-
+    end
+    it '#pet_status' do
+      
       ApplicationPet.create(application: @application, pet: @pet1)
       ApplicationPet.create(application: @application, pet: @pet2, status: 'Approved')
 
       expect(@application.pet_status(@pet1)).to eq(nil)
 
       expect(@application.pet_status(@pet2)).to eq('Approved')
+    end
+    it '#pet_approvals' do
+     
+      app1_pet1 = ApplicationPet.create(application: @application, pet: @pet1)
+      app1_pet2 = ApplicationPet.create(application: @application, pet: @pet2, status: 'Approved')
+    
+      expect(@application.pet_approvals).to eq(nil)
+      
+      app1_pet1 = ApplicationPet.update(status: 'Approved')
+      expect(@application.pet_approvals).to eq(:approved)
+      
+      app1_pet1 = ApplicationPet.update(status: 'Rejected')
+      expect(@application.pet_approvals).to eq(:rejected)
     end
   end
 end
