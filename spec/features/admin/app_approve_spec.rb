@@ -20,6 +20,11 @@ describe 'As a visitor' do
                         city: 'Denver',
                         state: 'CO',
                         zip: '80213')
+    @user2 = User.create(name: 'Sally Holmes',
+                        address: '283 North St',
+                        city: 'Englewood',
+                        state: 'CO',
+                        zip: '80111')
     @pet1 = Pet.create({
                          name: 'Jack',
                          image: 'https://images.dog.ceo/breeds/affenpinscher/n02110627_13014.jpg',
@@ -80,6 +85,31 @@ describe 'As a visitor' do
         click_button('Reject Pet')
       end
       expect(page).to have_content("Application Status: Rejected")
+    end
+    it "And a pet application has been approved, all other applications with that pet say 'pet has already been approved for adoption" do
+
+      @app1_pet1.update(status: "Approved")
+      
+
+      @application2= Application.create({
+                                        user: @user2,
+                                        description: "I'm the best at dogs",
+                                        status: 'Pending'
+                                      })
+      
+      ApplicationPet.create(application: @application2, pet: @pet1)
+      
+      visit "/admin/applications/#{@application2.id}"
+      expect(page).to_not have_content ("Pet has been approved on another application")
+      visit "/admin/applications/#{@application.id}"
+      within ("#application-pet-#{@pet2.id}") do
+        click_button('Approve Pet')
+      end
+      expect(page).to have_content("Application Status: Approved")
+      visit "/admin/applications/#{@application.id}"
+      within ("#application-pet-#{@pet1.id}") do
+        expect(page).to have_content ("Pet has been approved on another application")
+      end  
     end
   end
 end
