@@ -10,74 +10,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_235236) do
-
+ActiveRecord::Schema.define(version: 20_201_019_235_236) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "application_pets", force: :cascade do |t|
-    t.bigint "application_id"
-    t.bigint "pet_id"
-    t.string "status"
-    t.index ["application_id"], name: "index_application_pets_on_application_id"
-    t.index ["pet_id"], name: "index_application_pets_on_pet_id"
+  create_table 'application_pets', force: :cascade do |t|
+    t.bigint 'application_id'
+    t.bigint 'pet_id'
+    t.string 'status'
+    t.index ['application_id'], name: 'index_application_pets_on_application_id'
+    t.index ['pet_id'], name: 'index_application_pets_on_pet_id'
   end
 
-  create_table "applications", force: :cascade do |t|
-    t.string "description"
-    t.string "status"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_applications_on_user_id"
+  create_table 'applications', force: :cascade do |t|
+    t.string 'description'
+    t.string 'status'
+    t.bigint 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_applications_on_user_id'
   end
 
-  create_table "pets", force: :cascade do |t|
-    t.string "name"
-    t.string "image"
-    t.integer "age"
-    t.string "sex"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "shelter_id"
-    t.string "description"
-    t.boolean "adoptable"
-    t.index ["shelter_id"], name: "index_pets_on_shelter_id"
+  create_table 'pets', force: :cascade do |t|
+    t.string 'name'
+    t.string 'image'
+    t.integer 'age'
+    t.string 'sex'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.bigint 'shelter_id'
+    t.string 'description'
+    t.boolean 'adoptable'
+    t.index ['shelter_id'], name: 'index_pets_on_shelter_id'
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.string "title"
-    t.integer "rating"
-    t.string "content"
-    t.string "image"
-    t.bigint "user_id"
-    t.bigint "shelter_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'reviews', force: :cascade do |t|
+    t.string 'title'
+    t.integer 'rating'
+    t.string 'content'
+    t.string 'image'
+    t.bigint 'user_id'
+    t.bigint 'shelter_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "shelters", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
+  create_table 'shelters', force: :cascade do |t|
+    t.string 'name'
+    t.string 'address'
+    t.string 'city'
+    t.string 'state'
+    t.string 'zip'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'name'
+    t.string 'address'
+    t.string 'city'
+    t.string 'state'
+    t.string 'zip'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "application_pets", "applications"
-  add_foreign_key "application_pets", "pets"
-  add_foreign_key "applications", "users"
-  add_foreign_key "pets", "shelters"
-  add_foreign_key "reviews", "shelters"
-  add_foreign_key "reviews", "users"
+  add_foreign_key 'application_pets', 'applications'
+  add_foreign_key 'application_pets', 'pets'
+  add_foreign_key 'applications', 'users'
+  add_foreign_key 'pets', 'shelters'
+  add_foreign_key 'reviews', 'shelters'
+  add_foreign_key 'reviews', 'users'
 end
