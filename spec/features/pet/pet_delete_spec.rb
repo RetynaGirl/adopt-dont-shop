@@ -34,7 +34,7 @@ describe 'As a visitor' do
     it 'I see a link to delete the pet "Delete Pet"' do
       visit "/pets/#{@pet1.id}"
 
-      expect(page).to have_button('Delete Pet')
+      expect(page).to have_button('Delete')
     end
   end
 
@@ -42,7 +42,7 @@ describe 'As a visitor' do
     it 'it deletes the pet and I am redirected to the pet index page without this pet' do
       visit "/pets/#{@pet1.id}"
 
-      click_on('Delete Pet')
+      click_on('Delete')
 
       expect(page).to have_current_path('/pets')
 

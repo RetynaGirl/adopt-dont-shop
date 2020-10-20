@@ -12,12 +12,9 @@
           <%= shelter.name.split.map(&:capitalize).join(' ') %>
         </a>
         <div class='action-element-container'>
-          <a href="/shelters/<%= shelter.id %>/edit" class='shelter-action-link'>Update</a>
-          <form action="/shelters/<%= shelter.id %>" method='post' class='inline-form'>
-            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete" class='shelter-action-button'>
-          </form>
+            <%= render "shared/interaction_form", locals: {
+              link: "/shelters/#{shelter.id}"
+            } %>
         </div>
       </div>
     <% end %>

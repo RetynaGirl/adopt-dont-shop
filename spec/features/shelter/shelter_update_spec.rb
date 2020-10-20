@@ -29,7 +29,7 @@ describe 'As a visitor' do
 
       visit "/shelters/#{shelter.id}"
 
-      expect(page).to have_link('Update Shelter')
+      expect(page).to have_link('Update')
     end
 
     it "When I click the link I am taken to '/shelters/:id/edit' where I see a form to edit shelter info" do
@@ -41,7 +41,7 @@ describe 'As a visitor' do
 
       visit "/shelters/#{shelter.id}/edit"
 
-      expect(page).to have_button('Update Shelter')
+      expect(page).to have_button('Update')
     end
 
     it 'When I fill out the form and click the button to submit' do
@@ -61,7 +61,7 @@ describe 'As a visitor' do
 
       click_on('Update Shelter')
 
-      expect(page).to have_link('Update Shelter')
+      expect(page).to have_link('Update')
 
       expect(page).to have_content('Joe')
       expect(page).to have_content('new address')

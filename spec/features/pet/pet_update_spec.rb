@@ -42,7 +42,7 @@ describe 'As a visitor' do
 
       visit "/pets/#{@pet1.id}"
 
-      expect(page).to have_link('Update Pet')
+      expect(page).to have_link('Update')
 
 
     end
@@ -51,7 +51,7 @@ describe 'As a visitor' do
       it "I am taken to '/pets/:id/edit' where I see a form to edit the pet's data" do
         visit "/pets/#{@pet1.id}"
 
-        click_link('Update Pet')
+        click_link('Update')
 
         expect(page).to have_field('pet[name]')
       end
