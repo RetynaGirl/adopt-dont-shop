@@ -1,0 +1,16 @@
+<section>
+  <div class="section-head">
+    <h2>Applications that include <%= @pet.name %>:</h2>
+  </div>
+  <div>
+    <% if !@pet.applications.empty? %>
+      <% @pet.applications.each do |application| %>
+        <div id="application-<%= application.id %>">
+          <%= link_to "#{application.user.name}", "/applications/#{application.id}", class: 'shelter-link'%>
+        </div>
+      <% end %>
+    <% else %>
+      <p>There are no applications that contain this pet.</p>
+    <% end %>
+  </div>
+</section>
