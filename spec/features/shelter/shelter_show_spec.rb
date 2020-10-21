@@ -124,13 +124,14 @@ describe 'As a visitor' do
     it "I see shelter statistics" do
       visit "/shelters/#{@shelter1.id}"
       expect(page).to have_content("Num of Pets: 3")
-      expect(page).to have_content("Average Review Rating: 3.25")
-      expect(page).to have_content("Applications on file: 2")
+      expect(page).to have_content("Average Rating: 3.25")
+      expect(page).to have_content("Applications: 2")
 
       visit "/shelters/#{@shelter2.id}"
       expect(page).to have_content("Num of Pets: 0")
-      expect(page).to have_content("Average Review Rating: [No reviews]")
-      expect(page).to have_content("Applications on file: 0")
+      expect(page).to have_content("Average Rating: ")
+      expect(page).to have_content("Applications: 0")
+      
     end
   end
 end
