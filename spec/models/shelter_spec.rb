@@ -121,7 +121,7 @@ describe Shelter, type: :model do
       expect(@shelter1.total_pets).to eq(3)
       expect(@shelter2.total_pets).to eq(0)
     end
-    it 'can calcualte average shelter review rating' do
+    it 'can calculate average shelter review rating' do
       expect(@shelter1.average_rating).to eq(3.25)
       expect(@shelter2.average_rating).to eq(nil)
     end
