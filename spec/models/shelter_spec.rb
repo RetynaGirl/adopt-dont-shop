@@ -129,6 +129,10 @@ describe Shelter, type: :model do
       expect(@shelter1.application_count).to eq(2)
       expect(@shelter2.application_count).to eq(0)
     end
+    it 'do things with active record' do
+      expect(@shelter1.any_approved_apps?).to eq(true)
+      
+    end
     
   end
 end
