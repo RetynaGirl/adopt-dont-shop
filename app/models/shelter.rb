@@ -11,4 +11,8 @@ class Shelter < ApplicationRecord
   def average_rating
     reviews.average(:rating)
   end
+
+  def application_count
+    pets.joins(:application_pets).group(:application_id).pluck(:application_id).count
+  end
 end

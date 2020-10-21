@@ -58,7 +58,12 @@ describe Shelter, type: :model do
                      description: 'this dog is a lot of fun',
                      shelter_id: @shelter1.id
                    })
-      @user = User.create(name: "Jake",
+      @user1 = User.create(name: "Jake",
+                        address: '1234 1st St',
+                        city: 'Denver',
+                        state: 'CO',
+                        zip: '80213') 
+      @user2 = User.create(name: "Sally",
                         address: '1234 1st St',
                         city: 'Denver',
                         state: 'CO',
@@ -67,26 +72,49 @@ describe Shelter, type: :model do
                             rating: 4,
                             content: "They treat their pets well.",
                             image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
-                            user: @user,
+                            user: @user1,
                             shelter: @shelter1)
       @review2 = Review.create(title: 'ok shelter',
                               rating: 2,
                               content: 'meh...',
                               image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
-                              user: @user,
+                              user: @user1,
                               shelter: @shelter1)
       @review3 = Review.create(title: 'better shelter',
                               rating: 3,
                               content: 'They treat their pets well.',
                               image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
-                              user: @user,
+                              user: @user1,
                               shelter: @shelter1)
       @review4 = Review.create(title: 'Great shelter',
                               rating: 4,
                               content: "They're radical!",
                               image: 'https://images.dog.ceo/breeds/hound-walker/n02089867_454.jpg',
-                              user: @user,
+                              user: @user1,
                               shelter: @shelter1)
+      @application1 = Application.create({
+                              user: @user1,
+                              description: 'I have a great house for a dog',
+                              status: 'In Progress'
+                              })
+      @application2 = Application.create({
+                              user: @user2,
+                              description: 'Im a great owner',
+                              status: 'In Progress'
+                              })
+      @app1_pet1 = ApplicationPet.create({
+                              application_id: @application1.id,
+                              pet_id: @pet1.id
+                              })
+      @app1_pet2 = ApplicationPet.create({
+                              application_id: @application1.id,
+                              pet_id: @pet2.id
+                              })
+      @app2_pet1 = ApplicationPet.create({
+                              application_id: @application2.id,
+                              pet_id: @pet1.id
+                              })
+
     end
     
     it 'can count pets at a shelter' do
@@ -96,6 +124,10 @@ describe Shelter, type: :model do
     it 'can calcualte average shelter review rating' do
       expect(@shelter1.average_rating).to eq(3.25)
       expect(@shelter2.average_rating).to eq(nil)
+    end
+    it 'can count number of applications on file' do
+      expect(@shelter1.application_count).to eq(2)
+      expect(@shelter2.application_count).to eq(0)
     end
     
   end
