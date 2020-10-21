@@ -2,6 +2,7 @@
   <div class='section-head'>
     <h2><%= @pet.name.split.map(&:capitalize).join(' ') %></h2>
     <%= render "shared/interaction_form", locals: {link: "/pets/#{@pet.id}"} %>
+    <%= link_to 'View Applications', "/pets/#{@pet.id}/applications" %>
   </div>
   <img src="<%= @pet.image %>" alt="Photo of <%= @pet.name.split.map(&:capitalize).join(' ') %>" class='pet-show-image'>
   <div>
