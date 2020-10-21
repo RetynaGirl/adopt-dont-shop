@@ -48,3 +48,11 @@ input {
   padding: 2px;
   margin: 5px;
 }
+
+.elsewhere-tag {
+  color: #00ffee;
+  background: orange;
+  width: fit-content;
+  padding: 2px;
+  margin: 5px;
+}
