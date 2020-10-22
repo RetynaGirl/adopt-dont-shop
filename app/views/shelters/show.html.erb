@@ -1,9 +1,18 @@
 <section>
   <div class='section-head'>
     <h2><%= @shelter.name.split.map(&:capitalize).join(' ') %></h2>
+    
     <a href="/shelters/<%= @shelter.id %>/pets" class='header-link'>Pets</a>
     <%= render "shared/interaction_form", locals: {link: "/shelters/#{@shelter.id}"} %>
   </div>
+
+    <div>
+      <h3>Shelter Statistics:</h3>
+      Num of Pets: <%= @shelter.total_pets %><br>
+      Average Rating: <%= @shelter.average_rating %><br>
+      Applications: <%= @shelter.application_count %><br>
+    </div>
+  
 
   <div>
     <p class='shelter-info'>
